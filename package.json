@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-pushap",
+  "version": "1.0.0",
+  "description": "Pushap Raina's portfolio website with Vercel Web Analytics",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'No build step required for static site'",
+    "lint": "echo 'No linter configured for static HTML site'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "devDependencies": {},
+  "private": true
+}
