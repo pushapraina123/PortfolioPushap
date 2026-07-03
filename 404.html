@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page not found · Pushap Raina</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0c10">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230a0c10'/%3E%3Ctext x='12' y='16.5' font-family='monospace' font-size='11' font-weight='700' fill='%23e8b84b' text-anchor='middle'%3E%3C%2F%3E%3C%2Ftext%3E%3C%2Fsvg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+  .error-page{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+  .error-page__editor{
+    max-width: 460px;
+    width: 100%;
+    text-align: left;
+  }
+  .error-page__code{
+    font-family: var(--font-mono);
+    font-size: .86rem;
+    line-height: 1.9;
+    color: var(--text-dim);
+    padding: 1.4rem 1.5rem 1.6rem;
+  }
+  .error-page__status{
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 5rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin: 1.6rem 0 .6rem;
+    text-align: center;
+  }
+  .error-page__msg{
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  .error-page__actions{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<main class="error-page">
+  <div class="error-page__editor">
+    <div class="editor">
+      <div class="editor__titlebar">
+        <div class="editor__dots"><span></span><span></span><span></span></div>
+        <span class="editor__filename">404.js</span>
+        <span class="editor__spacer"></span>
+      </div>
+      <div class="editor__tabs">
+        <div class="editor__tab editor__tab--active">404.js</div>
+      </div>
+      <div class="editor__body">
+        <pre class="error-page__code"><code><span class="tok-com">// something went looking and came back empty</span>
+<span class="tok-key">function</span> <span class="tok-fn">findPage</span>(path) {
+  <span class="tok-key">throw new</span> <span class="tok-fn">Error</span>(<span class="tok-str">"404: page not found"</span>);
+}</code></pre>
+      </div>
+    </div>
+
+    <p class="error-page__status">404</p>
+    <p class="error-page__msg">This page doesn't exist — or moved. Let's get you back on track.</p>
+    <div class="error-page__actions">
+      <a href="index.html" class="btn btn--primary">
+        <span>Back to home</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="index.html#contact" class="btn btn--ghost">
+        <span>Contact me</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+</body>
+</html>

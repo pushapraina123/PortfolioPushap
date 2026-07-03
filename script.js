@@ -81,6 +81,55 @@
   }
 
   /* ---------------------------------------------------------
+     SPOTLIGHT CARDS — mouse-follow glow, delegated to one
+     listener rather than one per card for performance
+  --------------------------------------------------------- */
+  const hoverCapable = window.matchMedia('(hover: hover)').matches;
+  if (hoverCapable && !prefersReducedMotion) {
+    document.addEventListener('pointermove', (e) => {
+      const card = e.target.closest('.spotlight-card');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    }, { passive: true });
+  }
+
+  /* ---------------------------------------------------------
+     MAGNETIC BUTTONS — primary/ghost buttons pull gently
+     toward the cursor within their bounds
+  --------------------------------------------------------- */
+  if (hoverCapable && !prefersReducedMotion) {
+    document.querySelectorAll('.btn').forEach((btn) => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const relX = e.clientX - rect.left - rect.width / 2;
+        const relY = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${relX * 0.18}px, ${relY * 0.35}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------
+     BUTTON RIPPLE — lightweight click feedback
+  --------------------------------------------------------- */
+  document.querySelectorAll('.btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (prefersReducedMotion) return;
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'btn__ripple';
+      ripple.style.left = (e.clientX - rect.left) + 'px';
+      ripple.style.top = (e.clientY - rect.top) + 'px';
+      btn.appendChild(ripple);
+      ripple.addEventListener('animationend', () => ripple.remove());
+    });
+  });
+
+  /* ---------------------------------------------------------
      BACK TO TOP
   --------------------------------------------------------- */
   const backToTop = document.getElementById('backToTop');
@@ -373,6 +422,39 @@
   }
 
   /* ---------------------------------------------------------
+     COPY EMAIL BUTTON
+  --------------------------------------------------------- */
+  const copyEmailBtn = document.getElementById('copyEmailBtn');
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', async () => {
+      const email = copyEmailBtn.getAttribute('data-copy');
+      const label = copyEmailBtn.querySelector('.copy-btn__label');
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch (err) {
+        // Fallback for browsers without Clipboard API access
+        const tmp = document.createElement('textarea');
+        tmp.value = email;
+        tmp.style.position = 'fixed';
+        tmp.style.opacity = '0';
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand('copy');
+        document.body.removeChild(tmp);
+      }
+      copyEmailBtn.classList.add('is-copied');
+      copyEmailBtn.setAttribute('aria-label', 'Email copied to clipboard');
+      const original = label.textContent;
+      label.textContent = 'Copied!';
+      setTimeout(() => {
+        copyEmailBtn.classList.remove('is-copied');
+        copyEmailBtn.setAttribute('aria-label', 'Copy email address');
+        label.textContent = original;
+      }, 2000);
+    });
+  }
+
+  /* ---------------------------------------------------------
      INTERACTIVE TERMINAL
   --------------------------------------------------------- */
   const termFab = document.getElementById('termFab');
@@ -458,11 +540,13 @@
       printLine('GitHub: <a href="https://github.com/pushapraina123" target="_blank" rel="noopener">github.com/pushapraina123</a>\nLinkedIn: <a href="https://linkedin.com/in/pushap-raina" target="_blank" rel="noopener">linkedin.com/in/pushap-raina</a>\nEmail: <a href="mailto:rainapushap96@gmail.com">rainapushap96@gmail.com</a>');
     },
     resume: () => {
+      const resumeLink = document.querySelector('.hero__actions a[download]');
+      if (!resumeLink) {
+        printLine('Resume link not found — grab it from the hero section above.');
+        return;
+      }
       printLine('Downloading resume...');
-      const a = document.createElement('a');
-      a.href = 'assets/Pushap_Raina_Resume.pdf';
-      a.download = '';
-      a.click();
+      resumeLink.click();
     },
     whoami: () => {
       printLine('Pushap Raina — CS student at SPIT Mumbai, full-stack developer, occasional NLP tinkerer.');
