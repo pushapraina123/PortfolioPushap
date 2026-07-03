@@ -217,7 +217,7 @@
     { text: '  role: ', cls: null, tail: [['"Full-Stack Developer"', 'tok-str']] },
     { text: '  based: ', cls: null, tail: [['"Mumbai, India"', 'tok-str']] },
     { text: '  stack: [', cls: null, tail: [['"React"', 'tok-str'], [', ', null], ['"Node.js"', 'tok-str'], [', ', null], ['"MongoDB"', 'tok-str'], ['],', null]] },
-    { text: '  passion: ', cls: null, tail: [['"NLP + clean UX"', 'tok-str']] },
+    { text: '  passion: ', cls: null, tail: [['"Software Engineering"', 'tok-str']] },
     { text: '};', cls: null },
     { text: '', cls: null },
     { text: 'function', cls: 'tok-key', tail: [[' shipIt', 'tok-fn'], ['(idea) {', null]] },
