@@ -1,0 +1,24 @@
+{
+  "name": "portfolio-pushap",
+  "version": "1.0.0",
+  "description": "Pushap Raina's Portfolio Website with Vercel Speed Insights",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"No tests configured\" && exit 0",
+    "lint": "echo \"No linter configured\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pushapraina123/PortfolioPushap.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pushapraina123/PortfolioPushap/issues"
+  },
+  "homepage": "https://github.com/pushapraina123/PortfolioPushap#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
