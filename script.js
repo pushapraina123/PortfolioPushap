@@ -723,4 +723,29 @@
       lazySections.forEach((s) => loadHtml(s));
     }
   })();
+
+  /* Hash fragment validation — redirect to 404 when fragment doesn't match any element */
+  (function () {
+    const checkHash = () => {
+      try {
+        const h = window.location.hash;
+        if (!h) return;
+        const id = decodeURIComponent(h.slice(1));
+        if (!id) return;
+        // exact id match
+        if (document.getElementById(id)) return;
+        // name attribute match (anchors)
+        if (document.getElementsByName && document.getElementsByName(id).length) return;
+        // no match found — navigate to 404
+        window.location.replace('/404.html');
+      } catch (e) {
+        // if anything goes wrong, don't break the page
+        console.warn('Hash validation failed', e);
+      }
+    };
+    window.addEventListener('hashchange', checkHash);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', checkHash);
+    else checkHash();
+  })();
+
 })();
