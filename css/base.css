@@ -1,0 +1,208 @@
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: radial-gradient(
+      circle at top,
+      rgba(127, 226, 176, 0.1),
+      transparent 28%
+    ),
+    radial-gradient(circle at right, rgba(159, 233, 214, 0.08), transparent 24%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.matrix-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.7;
+  background: linear-gradient(
+      180deg,
+      rgba(9, 11, 15, 0.08),
+      rgba(9, 11, 15, 0.48)
+    ),
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(127, 224, 208, 0.12),
+      transparent 30%
+    );
+}
+.matrix-column {
+  position: absolute;
+  top: -130%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.42rem;
+  color: rgba(127, 224, 208, 0.78);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  mix-blend-mode: screen;
+  animation: matrix-fall linear infinite;
+  text-shadow: 0 0 14px rgba(127, 224, 208, 0.32);
+}
+.matrix-column span {
+  display: block;
+  opacity: 0.92;
+  filter: blur(0.12px);
+}
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-32vh);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(122vh);
+    opacity: 0;
+  }
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: #14110a;
+}
+
+/* Focus visibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip link — hidden until keyboard-focused */
+.skip-link {
+  position: fixed;
+  top: -60px;
+  left: 1rem;
+  z-index: 2000;
+  background: var(--accent);
+  color: #16110a;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.75rem 1.2rem;
+  border-radius: var(--radius-sm);
+  transition: top var(--dur-fast) var(--ease);
+}
+.skip-link:focus {
+  top: 1rem;
+  outline: 2px solid var(--bg);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+.dim {
+  color: var(--text-faint);
+  font-size: 0.85em;
+}
+
+/* ==========================================================================
+   BACKGROUND TEXTURE / CURSOR GLOW / SCROLL PROGRESS
+   ========================================================================== */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    500px circle at var(--x, 50%) var(--y, 30%),
+    rgba(127, 226, 176, 0.08),
+    transparent 60%
+  );
+  transition: opacity 0.3s ease;
+}
+@media (max-width: 900px), (hover: none) {
+  .cursor-glow {
+    display: none;
+  }
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 1000;
+  background: transparent;
+}
+.scroll-progress__bar {
+  height: 100%;
+  width: 0%;
+  background: var(--grad-accent);
+  transition: width 0.1s linear;
+  box-shadow: 0 0 12px rgba(127, 226, 176, 0.55);
+}

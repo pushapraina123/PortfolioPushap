@@ -1,0 +1,553 @@
+/* ==========================================================================
+   EFFECTS.CSS  —  Premium visual polish layer
+   Animations · 3D cards · Glows · Noise · Particles · Micro-interactions
+   ========================================================================== */
+
+/* ------------------------------------------------------------------
+   1. ANIMATED NOISE OVERLAY
+   ------------------------------------------------------------------ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  animation: noise-shift 8s steps(1) infinite;
+}
+@keyframes noise-shift {
+  0%   { background-position: 0 0; }
+  10%  { background-position: -5% -10%; }
+  20%  { background-position: -15% 5%; }
+  30%  { background-position: 7% -25%; }
+  40%  { background-position: 20% 25%; }
+  50%  { background-position: -25% 10%; }
+  60%  { background-position: 15% 5%; }
+  70%  { background-position: 0 15%; }
+  80%  { background-position: 25% 35%; }
+  90%  { background-position: -10% 10%; }
+  100% { background-position: 0 0; }
+}
+
+/* ------------------------------------------------------------------
+   2. AMBIENT BACKGROUND ORBS
+   ------------------------------------------------------------------ */
+.ambient-orbs {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+.ambient-orb--1 {
+  width: 38vw; height: 38vw;
+  top: -8%; left: -6%;
+  background: radial-gradient(circle, rgba(127,226,176,0.18), transparent 60%);
+  animation: orb-float-1 22s ease-in-out infinite;
+}
+.ambient-orb--2 {
+  width: 30vw; height: 30vw;
+  top: 30%; right: -5%;
+  background: radial-gradient(circle, rgba(95,199,187,0.14), transparent 60%);
+  animation: orb-float-2 18s ease-in-out infinite;
+}
+.ambient-orb--3 {
+  width: 24vw; height: 24vw;
+  bottom: 10%; left: 25%;
+  background: radial-gradient(circle, rgba(159,233,214,0.10), transparent 60%);
+  animation: orb-float-3 26s ease-in-out infinite;
+}
+@keyframes orb-float-1 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(4%,6%) scale(1.1); }
+  66%      { transform: translate(-3%,3%) scale(0.96); }
+}
+@keyframes orb-float-2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  40%     { transform: translate(-5%,-4%) scale(1.08); }
+  80%     { transform: translate(3%,5%) scale(0.94); }
+}
+@keyframes orb-float-3 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50%     { transform: translate(6%,-6%) scale(1.12); }
+}
+
+/* ------------------------------------------------------------------
+   3. ENHANCED SCROLL PROGRESS BAR
+   ------------------------------------------------------------------ */
+.scroll-progress {
+  height: 3px;
+}
+.scroll-progress__bar {
+  background: linear-gradient(90deg, #5fc7bb, #7fe2b0, #9fe9d6, #7fe2b0);
+  background-size: 300% 100%;
+  animation: progress-shimmer 3s linear infinite;
+  box-shadow: 0 0 16px rgba(127,226,176,0.7), 0 0 40px rgba(127,226,176,0.3);
+}
+@keyframes progress-shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* ------------------------------------------------------------------
+   4. ENHANCED REVEAL ANIMATIONS
+   ------------------------------------------------------------------ */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+.reveal-left.is-visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+}
+.reveal-right.is-visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-out);
+}
+.reveal-scale.is-visible { opacity: 1; transform: scale(1); }
+
+/* ------------------------------------------------------------------
+   5. TILT-3D CARDS
+   ------------------------------------------------------------------ */
+.tilt-card {
+  transition: transform 0.15s var(--ease-out), box-shadow 0.3s var(--ease);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.tilt-card:hover {
+  box-shadow:
+    0 30px 60px -20px rgba(0,0,0,0.6),
+    0 0 0 1px var(--border),
+    0 0 40px -10px rgba(127,226,176,0.15);
+}
+
+/* ------------------------------------------------------------------
+   6. GLOWING ACCENT BORDERS
+   ------------------------------------------------------------------ */
+.glow-border {
+  position: relative;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--grad-accent);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.35s var(--ease);
+  filter: blur(12px);
+}
+.glow-border:hover::before { opacity: 0.45; }
+
+/* ------------------------------------------------------------------
+   7. FLOATING PARTICLES CANVAS
+   ------------------------------------------------------------------ */
+#particleCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+/* ------------------------------------------------------------------
+   8. NAV GLOW ACTIVE LINK
+   ------------------------------------------------------------------ */
+.nav__link.is-active {
+  text-shadow: 0 0 16px rgba(127,226,176,0.5);
+}
+
+/* ------------------------------------------------------------------
+   9. SECTION TITLE GRADIENT ANIMATION
+   ------------------------------------------------------------------ */
+.section__title {
+  background: linear-gradient(
+    110deg,
+    var(--text) 0%,
+    var(--text) 40%,
+    var(--accent) 58%,
+    var(--accent-2) 72%,
+    var(--text) 88%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: title-gradient-sweep 7s ease-in-out infinite;
+}
+@keyframes title-gradient-sweep {
+  0%,100% { background-position: 0% center; }
+  50%      { background-position: 200% center; }
+}
+
+/* ------------------------------------------------------------------
+   10. STAT CARDS — holographic sheen
+   ------------------------------------------------------------------ */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 50%;
+  height: 220%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(127,226,176,0.08) 50%,
+    transparent 60%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+.stat-card:hover::after {
+  animation: sheen-sweep 0.7s var(--ease-out) forwards;
+}
+@keyframes sheen-sweep {
+  to { left: 160%; }
+}
+
+/* ------------------------------------------------------------------
+   11. PROJECT CARDS — glow depth
+   ------------------------------------------------------------------ */
+.project-card {
+  transform-style: preserve-3d;
+  transition: transform var(--dur-med) var(--ease-out),
+    border-color var(--dur-fast) var(--ease),
+    box-shadow var(--dur-med) var(--ease-out);
+}
+.project-card:hover {
+  box-shadow:
+    0 26px 50px -24px rgba(0,0,0,0.55),
+    0 0 40px -12px rgba(127,226,176,0.2);
+}
+
+/* ------------------------------------------------------------------
+   12. TIMELINE CONNECTOR LINE GLOW
+   ------------------------------------------------------------------ */
+.timeline__marker::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  top: 20px;
+  width: 2px;
+  bottom: -1.5rem;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  opacity: 0.25;
+}
+
+/* ------------------------------------------------------------------
+   13. SKILL GROUP — animated accent top sweep
+   ------------------------------------------------------------------ */
+.skill-group {
+  position: relative;
+  overflow: hidden;
+}
+.skill-group::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 2px;
+  background: var(--grad-accent);
+  border-radius: 0 0 2px 0;
+  transition: left 0.55s var(--ease-out);
+  box-shadow: 0 0 12px rgba(127,226,176,0.5);
+}
+.skill-group:hover::after { left: 100%; }
+
+/* ------------------------------------------------------------------
+   14. EDUCATION CARD — corner accent glow
+   ------------------------------------------------------------------ */
+.edu-card {
+  position: relative;
+  overflow: hidden;
+}
+.edu-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at top right, var(--accent-soft), transparent 70%);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+  opacity: 0.5;
+}
+.edu-card:hover::before { opacity: 1; }
+
+/* ------------------------------------------------------------------
+   15. EXTRACURRICULAR CARD ICON PULSE
+   ------------------------------------------------------------------ */
+.extra-card__icon {
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease);
+}
+.extra-card:hover .extra-card__icon {
+  transform: scale(1.15) rotate(-6deg);
+  box-shadow: 0 0 20px rgba(159,233,214,0.3);
+}
+
+/* ------------------------------------------------------------------
+   16. BUTTON — enhanced shimmer + glow
+   ------------------------------------------------------------------ */
+.btn--primary {
+  background: linear-gradient(
+    110deg,
+    #5fc7bb 0%,
+    #7fe2b0 30%,
+    #9fe9d6 50%,
+    #7fe2b0 70%,
+    #5fc7bb 100%
+  );
+  background-size: 250% auto;
+  animation: btn-shimmer 4s linear infinite;
+  color: #0c1f1a;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+@keyframes btn-shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 250% center; }
+}
+.btn--primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 12px 36px -10px rgba(127,226,176,0.55),
+    0 0 0 1px rgba(127,226,176,0.2);
+}
+
+/* ------------------------------------------------------------------
+   17. CUSTOM CURSOR (desktop only)
+   ------------------------------------------------------------------ */
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.18s, height 0.18s, opacity 0.18s, background 0.18s;
+  mix-blend-mode: screen;
+  box-shadow: 0 0 10px rgba(127,226,176,0.8);
+}
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(127,226,176,0.45);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.22s var(--ease-out), height 0.22s var(--ease-out), border-color 0.22s;
+}
+.cursor-ring.is-hovering {
+  width: 54px; height: 54px;
+  border-color: var(--accent);
+}
+@media (max-width: 900px), (hover: none) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ------------------------------------------------------------------
+   18. SECTION EYEBROW — live dot
+   ------------------------------------------------------------------ */
+.section__eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 0 rgba(159,233,214,0.6);
+  animation: eyebrow-pulse 2.5s ease-out infinite;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+@keyframes eyebrow-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(159,233,214,0.6); }
+  70%  { box-shadow: 0 0 0 7px rgba(159,233,214,0); }
+  100% { box-shadow: 0 0 0 0 rgba(159,233,214,0); }
+}
+
+/* ------------------------------------------------------------------
+   19. FOOTER — hover glow
+   ------------------------------------------------------------------ */
+.footer__inner .dim {
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.footer__inner .dim:hover {
+  color: var(--accent-2);
+  text-shadow: 0 0 16px rgba(159,233,214,0.4);
+}
+
+/* ------------------------------------------------------------------
+   20. CONTACT FORM — enhanced focus glow
+   ------------------------------------------------------------------ */
+.field input:focus,
+.field textarea:focus {
+  box-shadow:
+    0 0 0 3px var(--accent-soft),
+    0 0 20px rgba(127,226,176,0.15);
+}
+
+/* ------------------------------------------------------------------
+   21. COPY BUTTON — success flash
+   ------------------------------------------------------------------ */
+.copy-btn.is-copied {
+  background: var(--accent-soft);
+  animation: copy-flash 0.4s var(--ease-out);
+}
+@keyframes copy-flash {
+  0%   { transform: scale(0.95); }
+  50%  { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* ------------------------------------------------------------------
+   22. PAGE LOAD FADE-IN
+   ------------------------------------------------------------------ */
+@keyframes page-fadein {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+body {
+  animation: page-fadein 0.55s var(--ease-out) both;
+}
+
+/* ------------------------------------------------------------------
+   23. HERO GRID — breathe
+   ------------------------------------------------------------------ */
+.hero__grid {
+  animation: grid-breathe 10s ease-in-out infinite;
+}
+@keyframes grid-breathe {
+  0%,100% { opacity: 0.55; }
+  50%     { opacity: 0.85; }
+}
+
+/* ------------------------------------------------------------------
+   24. SOCIAL LINKS — glow on hover
+   ------------------------------------------------------------------ */
+.social-link:hover {
+  box-shadow: 0 0 20px rgba(127,226,176,0.3);
+  background: var(--accent-soft);
+}
+
+/* ------------------------------------------------------------------
+   25. TAGS — shimmer sweep
+   ------------------------------------------------------------------ */
+.tag {
+  position: relative;
+  overflow: hidden;
+}
+.tag::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(127,226,176,0.1), transparent);
+  transform: translateX(-100%);
+}
+.tag:hover::before {
+  animation: tag-sweep 0.5s var(--ease-out) forwards;
+}
+@keyframes tag-sweep {
+  to { transform: translateX(100%); }
+}
+
+/* ------------------------------------------------------------------
+   26. CERT CHIPS — sparkle
+   ------------------------------------------------------------------ */
+.cert-chip:hover {
+  background: var(--accent-soft);
+  box-shadow: 0 0 18px rgba(127,226,176,0.2);
+}
+
+/* ------------------------------------------------------------------
+   27. ICON-LINKS — glow
+   ------------------------------------------------------------------ */
+.icon-link:hover {
+  background: var(--accent-soft);
+  box-shadow: 0 0 14px rgba(127,226,176,0.25);
+}
+
+/* ------------------------------------------------------------------
+   28. NAV BAR — glassmorphism on scroll
+   ------------------------------------------------------------------ */
+.nav.is-scrolled {
+  background: rgba(7,26,22,0.82);
+  box-shadow: 0 1px 0 var(--border-soft), 0 8px 32px -8px rgba(0,0,0,0.5);
+}
+
+/* ------------------------------------------------------------------
+   29. TIMELINE SPACING
+   ------------------------------------------------------------------ */
+.timeline__item + .timeline__item {
+  margin-top: 2rem;
+}
+
+/* ------------------------------------------------------------------
+   30. SCROLL CUE — breathing glow
+   ------------------------------------------------------------------ */
+.scroll-cue {
+  animation: scroll-cue-breathe 3s ease-in-out infinite;
+}
+@keyframes scroll-cue-breathe {
+  0%,100% { opacity: 0.6; }
+  50%     { opacity: 1; }
+}
+
+/* ------------------------------------------------------------------
+   31. NAV LOGO — subtle shimmer
+   ------------------------------------------------------------------ */
+.nav__logo {
+  background: linear-gradient(110deg, var(--text) 40%, var(--accent) 60%, var(--text) 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: logo-shimmer 6s linear infinite;
+}
+.nav__logo-bracket {
+  -webkit-text-fill-color: var(--accent);
+  color: var(--accent);
+}
+@keyframes logo-shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ------------------------------------------------------------------
+   32. BACK TO TOP — glow pulse
+   ------------------------------------------------------------------ */
+#backToTop:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 0 18px rgba(127,226,176,0.3);
+}

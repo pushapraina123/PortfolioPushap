@@ -1,0 +1,45 @@
+/* ==========================================================================
+   TOKENS
+   ========================================================================== */
+:root {
+  /* Surfaces — dark green / pine base */
+  --bg: #071a16;
+  --bg-elevated: #0d261f;
+  --bg-elevated-2: #12352e;
+  --border: #214b42;
+  --border-soft: #1a3832;
+
+  /* Text */
+  --text: #edfdf7;
+  --text-dim: #b9d7cd;
+  --text-faint: #7ca79e;
+
+  /* Accents — softer green / mint palette */
+  --accent: #7fe2b0;
+  --accent-soft: rgba(127, 226, 176, 0.14);
+  --accent-2: #9fe9d6;
+  --accent-2-soft: rgba(159, 233, 214, 0.12);
+
+  /* Gradients */
+  --grad-accent: linear-gradient(135deg, #7fe2b0 0%, #5fc7bb 100%);
+  --grad-text: linear-gradient(100deg, #f1fff8 0%, #7fe2b0 42%, #9fe9d6 100%);
+
+  /* Type */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Layout */
+  --max-w: 1180px;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 0.84, 0.44, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 0.2s;
+  --dur-med: 0.5s;
+  --dur-slow: 0.9s;
+}

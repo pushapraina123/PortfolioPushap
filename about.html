@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About — Pushap Raina</title>
+    <title>About â€” Pushap Raina</title>
     <meta
       name="description"
-      content="Learn about Pushap Raina — CS undergraduate at SPIT Mumbai, full-stack developer building robust web platforms and applied AI systems."
+      content="Learn about Pushap Raina â€” CS undergraduate at SPIT Mumbai, full-stack developer building robust web platforms and applied AI systems."
     />
     <meta name="theme-color" content="#0a0c10" />
     <link rel="canonical" href="https://pushap.dev/about.html" />
@@ -20,10 +20,10 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="About — Pushap Raina" />
+    <meta property="og:title" content="About â€” Pushap Raina" />
     <meta
       property="og:description"
-      content="Learn about Pushap Raina — CS undergraduate at SPIT Mumbai, full-stack developer building robust web platforms and applied AI systems."
+      content="Learn about Pushap Raina â€” CS undergraduate at SPIT Mumbai, full-stack developer building robust web platforms and applied AI systems."
     />
     <meta property="og:url" content="https://pushap.dev/about.html" />
     <meta property="og:site_name" content="Pushap Raina" />
@@ -43,12 +43,24 @@
     <link rel="stylesheet" href="css/hero.css" />
     <link rel="stylesheet" href="css/sections.css" />
     <link rel="stylesheet" href="css/terminal.css" />
+    <link rel="stylesheet" href="css/effects.css" />
   </head>
   <body data-page="about">
     <div class="matrix-bg" id="matrixBg" aria-hidden="true"></div>
 
     <a href="#top" class="skip-link">Skip to content</a>
 
+        <!-- Ambient background orbs -->
+    <div class="ambient-orbs" aria-hidden="true">
+      <div class="ambient-orb ambient-orb--1"></div>
+      <div class="ambient-orb ambient-orb--2"></div>
+      <div class="ambient-orb ambient-orb--3"></div>
+    </div>
+    <!-- Particle canvas -->
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    <!-- Custom cursor -->
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
     <!-- Custom cursor glow -->
     <div class="cursor-glow" aria-hidden="true"></div>
 
@@ -60,7 +72,7 @@
     <!-- ============ NAV ============ -->
     <header class="nav" id="nav">
       <div class="nav__inner">
-        <a href="index.html" class="nav__logo" aria-label="Pushap Raina — home">
+        <a href="index.html" class="nav__logo" aria-label="Pushap Raina â€” home">
           <span class="nav__logo-bracket">&lt;</span>Pushap Raina<span
             class="nav__logo-bracket"
             >/&gt;</span
@@ -116,19 +128,19 @@
               <p>
                 I'm a final-year Computer Science undergraduate at
                 <strong>Sardar Patel Institute of Technology, Mumbai</strong>
-                (2022 – 2026, <strong>7.2 CGPA</strong>), building full-stack
+                (2022 â€“ 2026, <strong>7.2 CGPA</strong>), building full-stack
                 products and practical AI-driven experiences.
               </p>
               <p>
-                My work spans robust web platforms and applied AI systems — from
+                My work spans robust web platforms and applied AI systems â€” from
                 React and Next.js interfaces to backend architecture in Node.js,
                 Express, PHP, and Django. I enjoy building reliable APIs, secure
                 authentication, scalable data layers, and thoughtful user
                 experiences that make a real, measurable impact.
               </p>
               <p>
-                I've also taken initiative beyond code — leading technical
-                workshops and mentoring students — which sharpened both
+                I've also taken initiative beyond code â€” leading technical
+                workshops and mentoring students â€” which sharpened both
                 communication and execution under real-world constraints.
               </p>
             </div>
@@ -181,7 +193,7 @@
             >/&gt;</span
           >
         </a>
-        <p class="mono dim">designed &amp; built by Pushap Raina</p>
+        <p class="mono dim">designed &amp; built with â¤ï¸ by Pushap Raina</p>
         <button class="footer__top" id="backToTop" aria-label="Back to top">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path
@@ -279,3 +291,4 @@
     <script src="script.js"></script>
   </body>
 </html>
+

@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pushap Raina — Software Developer</title>
+    <title>Pushap Raina â€” Software Developer</title>
     <meta
       name="description"
-      content="Pushap Raina — Full-stack developer building web platforms and AI-powered tools with React, Node.js, and C++. Portfolio, projects and contact."
+      content="Pushap Raina â€” Full-stack developer building web platforms and AI-powered tools with React, Node.js, and C++. Portfolio, projects and contact."
     />
     <meta name="theme-color" content="#0a0c10" />
     <link rel="canonical" href="https://pushap.dev/" />
@@ -20,7 +20,7 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Pushap Raina — Software Developer" />
+    <meta property="og:title" content="Pushap Raina â€” Software Developer" />
     <meta
       property="og:description"
       content="Full-stack developer building web platforms and AI-powered tools with React, Node.js, and C++."
@@ -30,7 +30,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Pushap Raina — Software Developer" />
+    <meta name="twitter:title" content="Pushap Raina â€” Software Developer" />
     <meta
       name="twitter:description"
       content="Full-stack developer building web platforms and AI-powered tools with React, Node.js, and C++."
@@ -49,7 +49,9 @@
     <link rel="stylesheet" href="css/buttons.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/hero.css" />
-    <link rel="stylesheet" href="css/matrix.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/terminal.css" />
+    <link rel="stylesheet" href="css/effects.css" />
 
     <!-- Structured data -->
     <script type="application/ld+json">
@@ -68,12 +70,23 @@
       }
     </script>
   </head>
-  <body>
+  <body data-page="home">
     <div class="matrix-bg" id="matrixBg" aria-hidden="true"></div>
 
     <a href="#top" class="skip-link">Skip to content</a>
 
-    <!-- Custom cursor glow (desktop only, decorative) -->
+        <!-- Ambient background orbs -->
+    <div class="ambient-orbs" aria-hidden="true">
+      <div class="ambient-orb ambient-orb--1"></div>
+      <div class="ambient-orb ambient-orb--2"></div>
+      <div class="ambient-orb ambient-orb--3"></div>
+    </div>
+    <!-- Particle canvas -->
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    <!-- Custom cursor -->
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
+    <!-- Custom cursor glow -->
     <div class="cursor-glow" aria-hidden="true"></div>
 
     <!-- Progress bar -->
@@ -84,7 +97,7 @@
     <!-- ============ NAV ============ -->
     <header class="nav" id="nav">
       <div class="nav__inner">
-        <a href="#top" class="nav__logo" aria-label="Pushap Raina — home">
+        <a href="index.html" class="nav__logo" aria-label="Pushap Raina â€” home">
           <span class="nav__logo-bracket">&lt;</span>Pushap Raina<span
             class="nav__logo-bracket"
             >/&gt;</span
@@ -92,15 +105,15 @@
         </a>
 
         <nav class="nav__links" id="navLinks">
-          <a href="#about" class="nav__link" data-nav>about</a>
-          <a href="#experience" class="nav__link" data-nav>experience</a>
-          <a href="#projects" class="nav__link" data-nav>projects</a>
-          <a href="#skills" class="nav__link" data-nav>skills</a>
-          <a href="#education" class="nav__link" data-nav>education</a>
-          <a href="#contact" class="nav__link" data-nav>contact</a>
+          <a href="about.html" class="nav__link" data-nav>about</a>
+          <a href="experience.html" class="nav__link" data-nav>experience</a>
+          <a href="projects.html" class="nav__link" data-nav>projects</a>
+          <a href="skills.html" class="nav__link" data-nav>skills</a>
+          <a href="education.html" class="nav__link" data-nav>education</a>
+          <a href="contact.html" class="nav__link" data-nav>contact</a>
         </nav>
 
-        <a href="#contact" class="btn btn--ghost btn--sm nav__cta">say hello</a>
+        
 
         <button
           class="nav__toggle"
@@ -113,15 +126,15 @@
       </div>
 
       <div class="nav__mobile" id="navMobile">
-        <a href="#about" class="nav__mobile-link" data-nav>about</a>
-        <a href="#experience" class="nav__mobile-link" data-nav>experience</a>
-        <a href="#projects" class="nav__mobile-link" data-nav>projects</a>
-        <a href="#skills" class="nav__mobile-link" data-nav>skills</a>
-        <a href="#education" class="nav__mobile-link" data-nav>education</a>
-        <a href="#extracurricular" class="nav__mobile-link" data-nav
+        <a href="about.html" class="nav__mobile-link" data-nav>about</a>
+        <a href="experience.html" class="nav__mobile-link" data-nav>experience</a>
+        <a href="projects.html" class="nav__mobile-link" data-nav>projects</a>
+        <a href="skills.html" class="nav__mobile-link" data-nav>skills</a>
+        <a href="education.html" class="nav__mobile-link" data-nav>education</a>
+        <a href="extracurricular.html" class="nav__mobile-link" data-nav
           >beyond code</a
         >
-        <a href="#contact" class="nav__mobile-link" data-nav>contact</a>
+        <a href="contact.html" class="nav__mobile-link" data-nav>contact</a>
       </div>
     </header>
 
@@ -137,7 +150,7 @@
         <div class="hero__inner">
           <div class="hero__text">
             <p class="eyebrow reveal">
-              <span class="eyebrow__dot"></span> open to SDE roles · Mumbai,
+              <span class="eyebrow__dot"></span> open to SDE roles Â· Mumbai,
               India
             </p>
 
@@ -157,7 +170,7 @@
 
             <p class="hero__desc reveal">
               Final-year Computer Science undergrad at SPIT Mumbai who ships
-              things end to end — from schema to UI. I build with
+              things end to end â€” from schema to UI. I build with
               <strong>React, Next.js, Node.js and C++</strong>, and I like the
               parts other people skip: query optimization, auth that's actually
               secure, and APIs that don't fall over under load. 500+ DSA
@@ -165,7 +178,7 @@
             </p>
 
             <div class="hero__actions reveal">
-              <a href="#projects" class="btn btn--primary">
+              <a href="projects.html" class="btn btn--primary">
                 <span>View my work</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path
@@ -182,7 +195,7 @@
                 download="PushapRaina_SDE.pdf"
                 class="btn btn--ghost"
               >
-                <span>Download résumé</span>
+                <span>Download rÃ©sumÃ©</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path
                     d="M8 2v8m0 0L5 7m3 3l3-3M3 13.5h10"
@@ -313,805 +326,22 @@
           </div>
         </div>
 
-        <a href="#about" class="scroll-cue" aria-label="Scroll down">
+        <a href="about.html" class="scroll-cue" aria-label="Learn more about me">
           <span class="scroll-cue__mouse"><span></span></span>
         </a>
-      </section>
-
-      <!-- ============ ABOUT ============ -->
-      <section class="section" id="about">
-        <div class="section__inner">
-          <p class="section__eyebrow reveal">
-            <span class="mono">// 01</span> about
-          </p>
-          <h2 class="section__title reveal">
-            A developer who likes finishing what he starts.
-          </h2>
-
-          <div class="about__grid">
-            <div class="about__text reveal">
-              <p>
-                I'm a final-year Computer Science undergraduate at
-                <strong>Sardar Patel Institute of Technology, Mumbai</strong>
-                (2022 – 2026, <strong>7.2 CGPA</strong>), building full-stack
-                products and practical AI-driven experiences.
-              </p>
-              <p>
-                My work spans robust web platforms and applied AI systems — from
-                React and Next.js interfaces to backend architecture in Node.js,
-                Express, PHP, and Django. I enjoy building reliable APIs, secure
-                authentication, scalable data layers, and thoughtful user
-                experiences that make a real, measurable impact.
-              </p>
-              <p>
-                I've also taken initiative beyond code — leading technical
-                workshops and mentoring students — which sharpened both
-                communication and execution under real-world constraints.
-              </p>
-            </div>
-
-            <div class="about__stats reveal">
-              <div class="stat-card spotlight-card">
-                <span
-                  class="stat-card__num"
-                  data-count="7.2"
-                  data-decimal="true"
-                  >0</span
-                >
-                <span class="stat-card__label"
-                  >CGPA <span class="mono dim">/ 10</span></span
-                >
-              </div>
-              <div class="stat-card spotlight-card">
-                <span class="stat-card__num" data-count="500" data-suffix="+"
-                  >0</span
-                >
-                <span class="stat-card__label">DSA problems solved</span>
-              </div>
-              <div class="stat-card spotlight-card">
-                <span class="stat-card__num" data-count="3">0</span>
-                <span class="stat-card__label">shipped projects</span>
-              </div>
-              <div class="stat-card spotlight-card">
-                <span
-                  class="stat-card__num"
-                  data-count="97.4"
-                  data-decimal="true"
-                  >0</span
-                >
-                <span class="stat-card__label"
-                  >HSC <span class="mono dim">%</span></span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ EXPERIENCE ============ -->
-      <section class="section section--alt" id="experience">
-        <div class="section__inner">
-          <p class="section__eyebrow reveal">
-            <span class="mono">// 02</span> experience
-          </p>
-          <h2 class="section__title reveal">Where I've worked.</h2>
-
-          <div class="timeline">
-            <div class="timeline__item reveal">
-              <div class="timeline__marker"></div>
-              <div class="timeline__card spotlight-card">
-                <div class="timeline__head">
-                  <div>
-                    <h3 class="timeline__role">Software Development Intern</h3>
-                    <p class="timeline__org">
-                      Origins Tribes Pvt. Ltd. <span class="dim">· FMCG</span>
-                    </p>
-                  </div>
-                  <span class="timeline__date mono">Jan 2026 — Jun 2026</span>
-                </div>
-
-                <ul class="timeline__list">
-                  <li>
-                    Architected a high-performance database layer using AI-assisted
-                    coding tools for intelligent query optimization and strategic
-                    indexing, <strong>reducing API response times by 45%</strong> and
-                    improving scalability under production load.
-                  </li>
-                  <li>
-                    Designed backend infrastructure with AI agents for architecture
-                    planning and automated code quality validation, improving
-                    reliability and accelerating delivery to production.
-                  </li>
-                  <li>
-                    Developed and tested <strong>25+ RESTful APIs</strong> and
-                    React.js components using PHP, SQL, Postman, and Thunder Client,
-                    enabling seamless frontend-backend integration for the platform.
-                  </li>
-                </ul>
-
-                <div class="tag-row">
-                  <span class="tag">React.js</span>
-                  <span class="tag">PHP</span>
-                  <span class="tag">SQL</span>
-                  <span class="tag">REST APIs</span>
-                  <span class="tag">Postman</span>
-                  <span class="tag">AI Agents</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ PROJECTS ============ -->
-      <section class="section" id="projects">
-        <div class="section__inner">
-          <p class="section__eyebrow reveal">
-            <span class="mono">// 03</span> projects
-          </p>
-          <h2 class="section__title reveal">Things I've built.</h2>
-          <p class="section__sub reveal">
-            A few products I designed and shipped end to end, from schema to UI.
-          </p>
-
-          <div class="projects__grid">
-            <article class="project-card spotlight-card reveal">
-              <div class="project-card__top">
-                <div class="project-card__icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M5 12l4-4v3h6a3 3 0 1 0 0-6H9"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M19 12l-4 4v-3H9a3 3 0 1 1 0-6h6"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-                <div class="project-card__links">
-                  <a
-                    href="https://github.com/pushapraina123"
-                    class="icon-link"
-                    aria-label="GitHub repository"
-                    title="GitHub"
-                  >
-                    <svg
-                      width="17"
-                      height="17"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.69 5.42-5.25 5.7.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"
-                      />
-                    </svg>
-                  </a>
-                  <a
-                    href="https://infinityplay.vercel.app"
-                    class="icon-link"
-                    aria-label="Live demo"
-                    title="Live demo"
-                  >
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M9 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4M15 3h6v6M10 14 21 3"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <h3 class="project-card__title">InfinityPlay</h3>
-              <p class="project-card__tagline">
-                Full-stack platform for playing classic Flash games in modern
-                browsers using the Ruffle emulator.
-              </p>
-
-              <ul class="project-card__points">
-                <li>
-                  Integrated the Ruffle emulator to enable browser-based
-                  execution of <strong>100+ legacy Flash games</strong> without
-                  requiring Adobe Flash Player.
-                </li>
-                <li>
-                  Engineered file storage using MongoDB GridFS for SWF files and
-                  thumbnails, with Next.js API routes for upload, retrieval,
-                  categorization, voting, and issue reporting.
-                </li>
-                <li>
-                  Configured JWT-based authentication and role-based access
-                  control for admins and super users.
-                </li>
-              </ul>
-
-              <div class="tag-row">
-                <span class="tag">Next.js</span>
-                <span class="tag">MongoDB</span>
-                <span class="tag">GridFS</span>
-                <span class="tag">JWT</span>
-                <span class="tag">Ruffle</span>
-              </div>
-            </article>
-
-            <article class="project-card spotlight-card reveal">
-              <div class="project-card__top">
-                <div class="project-card__icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M14 3v5h5M9 13l1.8 1.8L15 11"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-                <div class="project-card__links">
-                  <a
-                    href="https://github.com/pushapraina123"
-                    class="icon-link"
-                    aria-label="GitHub repository"
-                    title="GitHub"
-                  >
-                    <svg
-                      width="17"
-                      height="17"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.69 5.42-5.25 5.7.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <h3 class="project-card__title">ResuFit</h3>
-              <p class="project-card__tagline">
-                AI-powered resume analysis platform with ATS-style scoring and
-                personalized feedback.
-              </p>
-
-              <ul class="project-card__points">
-                <li>
-                  Built <strong>10+ RESTful APIs</strong> with Node.js and
-                  Express.js for uploads, revision history, and admin workflows,
-                  integrating Cohere AI to generate ATS scores in
-                  <strong>under 15 seconds</strong>.
-                </li>
-                <li>
-                  Designed a React dashboard for resume analysis, score
-                  visualization, and revision tracking, with Firebase Auth
-                  supporting 100+ test users.
-                </li>
-              </ul>
-
-              <div class="tag-row">
-                <span class="tag">React</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">Express</span>
-                <span class="tag">MongoDB</span>
-                <span class="tag">Cohere AI</span>
-                <span class="tag">Firebase</span>
-              </div>
-            </article>
-
-            <article class="project-card spotlight-card reveal">
-              <div class="project-card__top">
-                <div class="project-card__icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
-                <div class="project-card__links">
-                  <a
-                    href="https://github.com/pushapraina123"
-                    class="icon-link"
-                    aria-label="GitHub repository"
-                    title="GitHub"
-                  >
-                    <svg
-                      width="17"
-                      height="17"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.69 5.42-5.25 5.7.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <h3 class="project-card__title">ShareKare</h3>
-              <p class="project-card__tagline">
-                Donation and redistribution platform connecting individual
-                donors with NGOs.
-              </p>
-
-              <ul class="project-card__points">
-                <li>
-                  Architected role-based dashboards for donors, NGOs, and
-                  administrators,
-                  <strong>reducing donation moderation time by 25%</strong>
-                  across 3 access levels.
-                </li>
-                <li>
-                  Integrated Leaflet Maps for location-based donation discovery
-                  within a 10km radius, with calendar invites and live
-                  notifications — <strong>+30% engagement</strong> in testing.
-                </li>
-              </ul>
-
-              <div class="tag-row">
-                <span class="tag">Django</span>
-                <span class="tag">HTML5</span>
-                <span class="tag">CSS3</span>
-                <span class="tag">SQLite</span>
-                <span class="tag">Leaflet Maps</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ SKILLS ============ -->
-      <section class="section section--alt" id="skills">
-        <div class="section__inner">
-          <p class="section__eyebrow reveal">
-            <span class="mono">// 04</span> skills
-          </p>
-          <h2 class="section__title reveal">What I work with.</h2>
-
-          <div class="skills__grid">
-            <div class="skill-group spotlight-card reveal">
-              <h3 class="skill-group__title">Languages &amp; Database</h3>
-              <div class="tag-row">
-                <span class="tag tag--lg">C++</span>
-                <span class="tag tag--lg">JavaScript</span>
-                <span class="tag tag--lg">Java</span>
-                <span class="tag tag--lg">Python</span>
-                <span class="tag tag--lg">SQL</span>
-                <span class="tag tag--lg">MongoDB</span>
-              </div>
-            </div>
-
-            <div class="skill-group spotlight-card reveal">
-              <h3 class="skill-group__title">Frameworks &amp; Libraries</h3>
-              <div class="tag-row">
-                <span class="tag tag--lg">Node.js</span>
-                <span class="tag tag--lg">Express</span>
-                <span class="tag tag--lg">JWT</span>
-                <span class="tag tag--lg">React.js</span>
-                <span class="tag tag--lg">Next.js</span>
-                <span class="tag tag--lg">NumPy</span>
-                <span class="tag tag--lg">Pandas</span>
-                <span class="tag tag--lg">Matplotlib</span>
-              </div>
-            </div>
-
-            <div class="skill-group spotlight-card reveal">
-              <h3 class="skill-group__title">Tools &amp; AI Workflow</h3>
-              <div class="tag-row">
-                <span class="tag tag--lg">Postman</span>
-                <span class="tag tag--lg">Thunder Client</span>
-                <span class="tag tag--lg">Docker</span>
-                <span class="tag tag--lg">Figma</span>
-                <span class="tag tag--lg">GitHub</span>
-                <span class="tag tag--lg">GitHub Copilot</span>
-                <span class="tag tag--lg">Gemini CLI</span>
-                <span class="tag tag--lg">Claude Code</span>
-                <span class="tag tag--lg">Antigravity</span>
-              </div>
-            </div>
-
-            <div class="skill-group spotlight-card reveal">
-              <h3 class="skill-group__title">Architecture &amp; DevOps</h3>
-              <div class="tag-row">
-                <span class="tag tag--lg">Algorithms</span>
-                <span class="tag tag--lg">CI/CD</span>
-                <span class="tag tag--lg">AWS S3</span>
-                <span class="tag tag--lg">AWS EC2</span>
-                <span class="tag tag--lg">Load Balancer</span>
-                <span class="tag tag--lg">Django</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ EDUCATION ============ -->
-      <section class="section" id="education">
-        <div class="section__inner">
-          <p class="section__eyebrow reveal">
-            <span class="mono">// 05</span> education
-          </p>
-          <h2 class="section__title reveal">Where I learned it.</h2>
-
-          <div class="edu__grid">
-            <div class="edu-card spotlight-card reveal">
-              <div class="edu-card__head">
-                <h3>Sardar Patel Institute of Technology</h3>
-                <span class="mono edu-card__date">2022 — 2026</span>
-              </div>
-              <p class="edu-card__degree">
-                Bachelor of Technology in Computer Science
-              </p>
-              <p class="edu-card__meta">
-                Mumbai, India &nbsp;·&nbsp; CGPA: 7.2
-              </p>
-              <div class="tag-row">
-                <span class="tag">Database Management Systems</span>
-                <span class="tag">Data Structures &amp; Algorithms</span>
-                <span class="tag">Object Oriented Programming</span>
-                <span class="tag">Operating Systems</span>
-                <span class="tag">Machine Learning</span>
-                <span class="tag">Computer Networks</span>
-              </div>
-            </div>
-
-            <div class="edu-card spotlight-card reveal">
-              <div class="edu-card__head">
-                <h3>World Model Higher Secondary School</h3>
-                <span class="mono edu-card__date">2021 — 2022</span>
-              </div>
-              <p class="edu-card__degree">Higher Secondary Certificate (HSC)</p>
-              <p class="edu-card__meta">
-                Jammu, India &nbsp;·&nbsp; Percentage: 97.4%
-              </p>
-            </div>
-          </div>
-
-          <div class="cert-row reveal">
-            <div class="cert-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2 3 6.5 12 11l9-4.5L12 2Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M3 6.5v11L12 22V11M21 6.5v11L12 22"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <span
-                >Web Development Fundamentals
-                <span class="dim">— IBM SkillsBuild</span></span
-              >
-            </div>
-            <div class="cert-chip">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M12 2 3 6.5 12 11l9-4.5L12 2Z"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M3 6.5v11L12 22V11M21 6.5v11L12 22"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              <span
-                >Artificial Intelligence Fundamentals
-                <span class="dim">— IBM SkillsBuild</span></span
-              >
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ EXTRACURRICULAR ============ -->
-      <section class="section section--alt" id="extracurricular">
-        <div class="section__inner">
-          <p class="section__eyebrow reveal">
-            <span class="mono">// 06</span> beyond code
-          </p>
-          <h2 class="section__title reveal">Extracurricular.</h2>
-
-          <div class="extra__grid">
-            <div class="extra-card spotlight-card reveal">
-              <div class="extra-card__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M10 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 10v-2a4 4 0 0 0-3-3.87M15 3.13A4 4 0 0 1 15 10.87"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <h3>Event Head, ACSES</h3>
-              <p class="extra-card__org">CSE Dept. Committee</p>
-              <p>
-                Led a team of 10+ coordinators to organize online workshops on
-                Java and Machine Learning; managed scheduling, speaker
-                coordination, content flow, and promotions.
-              </p>
-            </div>
-
-            <div class="extra-card spotlight-card reveal">
-              <div class="extra-card__icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M12 6.5C10.5 4.5 7.8 4 6 5.5c-2 1.7-2 4.7 0 6.5l6 5.5 6-5.5c2-1.8 2-4.8 0-6.5-1.8-1.5-4.5-1-6 1Z"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </div>
-              <h3>Mentor, Abhyudaya – SPJIMR</h3>
-              <p class="extra-card__org">SPJIMR</p>
-              <p>
-                Guided students (Grades 7–10) in academics and life skills;
-                tracked progress of underprivileged learners.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ CONTACT ============ -->
-      <section class="section section--contact" id="contact">
-        <div class="section__inner">
-          <p class="section__eyebrow reveal">
-            <span class="mono">// 07</span> contact
-          </p>
-          <h2 class="section__title reveal">Let's build something.</h2>
-          <p class="section__sub reveal">
-            Have a role, a project, or just want to talk shop? My inbox is open.
-          </p>
-
-          <div class="contact__grid">
-            <div class="contact__info reveal">
-              <div class="contact__row contact__row--email">
-                <a
-                  href="mailto:rainapushap96@gmail.com"
-                  class="contact__row-link"
-                >
-                  <span class="contact__row-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M3 5.5h18v13H3v-13Z"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                        stroke-linejoin="round"
-                      />
-                      <path
-                        d="M3.5 6l8.5 7 8.5-7"
-                        stroke="currentColor"
-                        stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <span>
-                    <span class="contact__row-label">Email</span>
-                    <span class="contact__row-value"
-                      >rainapushap96@gmail.com</span
-                    >
-                  </span>
-                </a>
-                <button
-                  type="button"
-                  class="copy-btn"
-                  id="copyEmailBtn"
-                  data-copy="rainapushap96@gmail.com"
-                  aria-label="Copy email address"
-                >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                    <rect
-                      x="8"
-                      y="8"
-                      width="12"
-                      height="12"
-                      rx="2"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                    />
-                    <path
-                      d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                    />
-                  </svg>
-                  <span class="copy-btn__label">Copy</span>
-                </button>
-              </div>
-              <a href="tel:+919906318477" class="contact__row">
-                <span class="contact__row-icon">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4c0 1-1 2-2 2C10.5 21 3 13.5 3 6c0-1 1-2 2-2Z"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                <span>
-                  <span class="contact__row-label">Phone</span>
-                  <span class="contact__row-value">+91 99063 18477</span>
-                </span>
-              </a>
-              <a
-                href="https://linkedin.com/in/pushap-raina"
-                target="_blank"
-                rel="noopener"
-                class="contact__row"
-              >
-                <span class="contact__row-icon">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"
-                    />
-                  </svg>
-                </span>
-                <span>
-                  <span class="contact__row-label">LinkedIn</span>
-                  <span class="contact__row-value">pushap-raina</span>
-                </span>
-              </a>
-              <a
-                href="https://github.com/pushapraina123"
-                target="_blank"
-                rel="noopener"
-                class="contact__row"
-              >
-                <span class="contact__row-icon">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.69 5.42-5.25 5.7.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"
-                    />
-                  </svg>
-                </span>
-                <span>
-                  <span class="contact__row-label">GitHub</span>
-                  <span class="contact__row-value">pushapraina123</span>
-                </span>
-              </a>
-
-              <p class="contact__location mono">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Mumbai, India
-              </p>
-            </div>
-
-            <form class="contact__form" id="contactForm" novalidate>
-              <div class="field">
-                <label for="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  placeholder="Your name"
-                  required
-                />
-                <span class="field__error" id="nameError"></span>
-              </div>
-              <div class="field">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="you@example.com"
-                  required
-                />
-                <span class="field__error" id="emailError"></span>
-              </div>
-              <div class="field">
-                <label for="subject">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  placeholder="What's this about?"
-                  required
-                />
-                <span class="field__error" id="subjectError"></span>
-              </div>
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="5"
-                  placeholder="Tell me a bit about it..."
-                  required
-                ></textarea>
-                <span class="field__error" id="messageError"></span>
-              </div>
-
-              <button type="submit" class="btn btn--primary btn--full">
-                <span>Send message</span>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                  <path
-                    d="M14.5 1.5 7 9M14.5 1.5 10 14.5 7 9 1.5 6l13-4.5Z"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </button>
-
-              <p class="contact__form-note">
-                Opens your email client with the message pre-filled — nothing is
-                sent from this page.
-              </p>
-              <p
-                class="contact__form-status"
-                id="formStatus"
-                role="status"
-                aria-live="polite"
-              ></p>
-            </form>
-          </div>
-        </div>
       </section>
     </main>
 
     <!-- ============ FOOTER ============ -->
     <footer class="footer">
       <div class="footer__inner">
-        <a href="#top" class="nav__logo">
+        <a href="index.html" class="nav__logo">
           <span class="nav__logo-bracket">&lt;</span>PR<span
             class="nav__logo-bracket"
             >/&gt;</span
           >
         </a>
-        <p class="mono dim">designed &amp; built by Pushap Raina</p>
+        <p class="mono dim">designed &amp; built with â¤ï¸ by Pushap Raina</p>
         <button class="footer__top" id="backToTop" aria-label="Back to top">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path
@@ -1204,7 +434,9 @@
         </div>
       </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
+

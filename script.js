@@ -34,7 +34,7 @@
 
   /* Intercept same-origin link clicks and show custom 404 page when target is missing */
   (function () {
-    if (!window.fetch || !window.URL) return;
+    if (!window.fetch || !window.URL || window.location.protocol === "file:") return;
     document.addEventListener("click", (event) => {
       const anchor = event.target.closest("a");
       if (!anchor) return;
@@ -53,7 +53,7 @@
       fetch(pathToCheck, { method: "HEAD" })
         .then((res) => {
           if (res.status === 404) {
-            window.location.href = "/404.html";
+            window.location.href = "404.html";
           } else {
             window.location.href = dest.href;
           }
@@ -63,6 +63,14 @@
         });
     });
   })();
+
+  /* Back to top button */
+  const backToTopBtn = document.getElementById("backToTop");
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+    });
+  }
 
   const currentPage = document.body.dataset.page;
   if (currentPage) {
@@ -747,5 +755,166 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', checkHash);
     else checkHash();
   })();
+
+  /* ==========================================================================
+     PREMIUM VISUAL EFFECTS — Particles · Custom Cursor · Tilt-3D Cards
+     ========================================================================== */
+
+  /* --- Floating Particle Canvas --- */
+  (function () {
+    if (prefersReducedMotion) return;
+    const canvas = document.getElementById("particleCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let W, H, particles;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+
+    function randBetween(a, b) { return a + Math.random() * (b - a); }
+
+    function createParticle() {
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: randBetween(0.6, 2.2),
+        dx: randBetween(-0.18, 0.18),
+        dy: randBetween(-0.28, -0.06),
+        opacity: randBetween(0.08, 0.45),
+        pulse: randBetween(0, Math.PI * 2),
+        pulseSpeed: randBetween(0.006, 0.018),
+      };
+    }
+
+    const PARTICLE_COUNT = Math.min(60, Math.floor(W / 22));
+    particles = Array.from({ length: PARTICLE_COUNT }, createParticle);
+
+    const ACCENT_COLOR = "127,226,176";
+
+    let raf;
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach((p) => {
+        p.pulse += p.pulseSpeed;
+        const a = p.opacity * (0.7 + 0.3 * Math.sin(p.pulse));
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${ACCENT_COLOR},${a.toFixed(2)})`;
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.y < -4) { p.y = H + 4; p.x = Math.random() * W; }
+        if (p.x < -4) p.x = W + 4;
+        if (p.x > W + 4) p.x = -4;
+      });
+      raf = requestAnimationFrame(draw);
+    }
+    draw();
+
+    // Pause when tab hidden for performance
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) cancelAnimationFrame(raf);
+      else draw();
+    });
+  })();
+
+  /* --- Custom Cursor (desktop hover only) --- */
+  (function () {
+    if (prefersReducedMotion) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    const dot  = document.querySelector(".cursor-dot");
+    const ring = document.querySelector(".cursor-ring");
+    if (!dot || !ring) return;
+
+    let mx = -200, my = -200;
+    let rx = -200, ry = -200;
+
+    window.addEventListener("mousemove", (e) => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left  = mx + "px";
+      dot.style.top   = my + "px";
+    }, { passive: true });
+
+    // Ring follows with lerp for smooth trailing effect
+    (function lerp() {
+      rx += (mx - rx) * 0.13;
+      ry += (my - ry) * 0.13;
+      ring.style.left = rx + "px";
+      ring.style.top  = ry + "px";
+      requestAnimationFrame(lerp);
+    })();
+
+    // Grow ring on interactive elements
+    const interactiveSelector = "a, button, [role='button'], .tilt-card, .project-card, .stat-card, .skill-group, .edu-card, .extra-card, .timeline__card, .tag, input, textarea";
+    document.addEventListener("mouseover", (e) => {
+      if (e.target.closest(interactiveSelector)) {
+        ring.classList.add("is-hovering");
+        dot.style.opacity = "0.4";
+      }
+    }, { passive: true });
+    document.addEventListener("mouseout", (e) => {
+      if (e.target.closest(interactiveSelector)) {
+        ring.classList.remove("is-hovering");
+        dot.style.opacity = "1";
+      }
+    }, { passive: true });
+  })();
+
+  /* --- Tilt-3D Cards --- */
+  (function () {
+    if (prefersReducedMotion) return;
+    if (!window.matchMedia("(hover: hover)").matches) return;
+
+    const TILT_SELECTOR = ".project-card, .stat-card, .skill-group, .edu-card, .extra-card, .timeline__card";
+    const MAX_TILT = 8; // degrees
+
+    document.addEventListener("pointermove", (e) => {
+      const card = e.target.closest(TILT_SELECTOR);
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = (e.clientX - cx) / (rect.width / 2);
+      const dy = (e.clientY - cy) / (rect.height / 2);
+      const rotY =  dx * MAX_TILT;
+      const rotX = -dy * MAX_TILT;
+      card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+    }, { passive: true });
+
+    document.addEventListener("pointerleave", (e) => {
+      const card = e.target.closest(TILT_SELECTOR);
+      if (!card) return;
+      card.style.transform = "";
+    }, { passive: true });
+
+    document.addEventListener("pointerout", (e) => {
+      const card = e.target.closest(TILT_SELECTOR);
+      if (!card) return;
+      card.style.transform = "";
+    }, { passive: true });
+  })();
+
+  /* --- Enhanced Reveal (extra classes) --- */
+  if (supportsObserver && !prefersReducedMotion) {
+    const extraRevealEls = document.querySelectorAll(".reveal-left, .reveal-right, .reveal-scale");
+    const extraObs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          extraObs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12 }
+    );
+    extraRevealEls.forEach((el) => extraObs.observe(el));
+  }
 
 })();

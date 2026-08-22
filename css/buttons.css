@@ -1,0 +1,94 @@
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  font-weight: 500;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: transform 0.12s var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease),
+    background var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+.btn svg {
+  transition: transform var(--dur-fast) var(--ease);
+  flex-shrink: 0;
+}
+
+/* Click ripple */
+.btn__ripple {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.35;
+  pointer-events: none;
+  transform: scale(0);
+  animation: btn-ripple 0.6s var(--ease-out) forwards;
+}
+@keyframes btn-ripple {
+  to {
+    transform: scale(22);
+    opacity: 0;
+  }
+}
+
+.btn--primary {
+  background: var(--grad-accent);
+  background-size: 160% 160%;
+  color: #16110a;
+  font-weight: 600;
+  box-shadow: 0 0 0 0 rgba(232, 184, 75, 0);
+  animation: btn-sheen 5s ease infinite;
+}
+@keyframes btn-sheen {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -8px rgba(232, 184, 75, 0.5);
+}
+.btn--primary:hover svg {
+  transform: translateX(3px);
+}
+.btn--primary:active {
+  transform: translateY(0);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text);
+}
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.btn--sm {
+  padding: 0.55rem 1rem;
+  font-size: 0.8rem;
+}
+.btn--full {
+  width: 100%;
+  justify-content: center;
+}
