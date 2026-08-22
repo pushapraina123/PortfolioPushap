@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pushap Raina — Software Developer</title>
-<meta name="description" content="Pushap Raina — Full-stack developer building web platforms with React, Node.js and applied NLP. Portfolio, projects and contact.">
+<meta name="description" content="Pushap Raina — Full-stack developer building web platforms and AI-powered tools with React, Node.js, and C++. Portfolio, projects and contact.">
 <meta name="theme-color" content="#0a0c10">
 <link rel="canonical" href="https://pushap.dev/">
 
@@ -14,21 +14,20 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Pushap Raina — Software Developer">
-<meta property="og:description" content="Full-stack developer building web platforms with React, Node.js and applied NLP. Portfolio, projects and contact.">
+<meta property="og:description" content="Full-stack developer building web platforms and AI-powered tools with React, Node.js, and C++.">
 <meta property="og:url" content="https://pushap.dev/">
 <meta property="og:site_name" content="Pushap Raina">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pushap Raina — Software Developer">
-<meta name="twitter:description" content="Full-stack developer building web platforms with React, Node.js and applied NLP.">
+<meta name="twitter:description" content="Full-stack developer building web platforms and AI-powered tools with React, Node.js, and C++.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
-<script defer src="/_vercel/insights/script.js"></script>
 
 <!-- Structured data -->
 <script type="application/ld+json">
@@ -49,6 +48,8 @@
 </head>
 <body>
 
+<div class="matrix-bg" id="matrixBg" aria-hidden="true"></div>
+
 <a href="#top" class="skip-link">Skip to content</a>
 
 <!-- Custom cursor glow (desktop only, decorative) -->
@@ -61,7 +62,7 @@
 <header class="nav" id="nav">
   <div class="nav__inner">
     <a href="#top" class="nav__logo" aria-label="Pushap Raina — home">
-      <span class="nav__logo-bracket">&lt;</span>PR<span class="nav__logo-bracket">/&gt;</span>
+      <span class="nav__logo-bracket">&lt;</span>Pushap Raina<span class="nav__logo-bracket">/&gt;</span>
     </a>
 
     <nav class="nav__links" id="navLinks">
@@ -97,27 +98,31 @@
   <section class="hero" id="hero">
     <div class="hero__bg" aria-hidden="true">
       <div class="hero__grid"></div>
-      <div class="hero__glow"></div>
+      <div class="hero__glow" id="heroGlow"></div>
+      <div class="hero__glow hero__glow--2" aria-hidden="true"></div>
     </div>
 
     <div class="hero__inner">
       <div class="hero__text">
         <p class="eyebrow reveal">
-          <span class="eyebrow__dot"></span> available for opportunities
+          <span class="eyebrow__dot"></span> open to SDE roles · Mumbai, India
         </p>
 
         <h1 class="hero__title reveal">
-          <span class="hero__title-line">Pushap Raina</span>
+          <span class="hero__title-line hero__title-line--hi">Hey, I'm</span>
+          <span class="hero__title-line hero__title-line--name">Pushap Raina<span class="hero__title-cursor">.</span></span>
         </h1>
 
         <p class="hero__role reveal">
           <span class="typewriter" id="typewriter"></span><span class="typewriter-cursor">|</span>
         </p>
 
-<p class="hero__desc reveal">
-  Recent Computer Science graduate from SPIT Mumbai, building full-stack applications, AI-powered solutions, and scalable digital experiences. From modernizing legacy games to building intelligent resume analysis platforms, I enjoy turning complex ideas into practical, reliable, and user-focused products.
-</p>
-
+        <p class="hero__desc reveal">
+          Final-year Computer Science undergrad at SPIT Mumbai who ships things end to end — from schema to UI.
+          I build with <strong>React, Next.js, Node.js and C++</strong>, and I like the parts other people skip: query
+          optimization, auth that's actually secure, and APIs that don't fall over under load. 500+ DSA problems solved
+          along the way, because fundamentals matter.
+        </p>
 
         <div class="hero__actions reveal">
           <a href="#projects" class="btn btn--primary">
@@ -125,7 +130,7 @@
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="PushapRaina_SDE.pdf" download="PushapRaina_SDE.pdf" class="btn btn--ghost">
-            <span>Download CV</span>
+            <span>Download résumé</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v8m0 0L5 7m3 3l3-3M3 13.5h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -136,6 +141,9 @@
           </a>
           <a href="https://linkedin.com/in/pushap-raina" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-link">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+          </a>
+          <a href="https://leetcode.com/pushapraina123" target="_blank" rel="noopener" aria-label="LeetCode" class="social-link">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M14.5 3.5 7 11l7.5 8.5M7 11h13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="mailto:rainapushap96@gmail.com" aria-label="Email" class="social-link">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M3 5.5h18v13H3v-13Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3.5 6l8.5 7 8.5-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -157,9 +165,12 @@
             <pre class="editor__code" id="editorCode"><code></code></pre>
           </div>
         </div>
-       <div class="hero__photo-frame">
-    <img src="IMG-20250720-WA0009.jpg" alt="Pushap Raina" class="hero__photo" width="92" height="92" decoding="async">
-</div>
+        <div class="hero__photo-frame">
+          <img src="IMG-20250720-WA0009.jpg" alt="Pushap Raina" class="hero__photo" width="180" height="180" decoding="async">
+          <span class="hero__photo-badge" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -177,14 +188,17 @@
       <div class="about__grid">
         <div class="about__text reveal">
           <p>
-            I'm a Computer Science undergraduate at <strong>Sardar Patel Institute of Technology, Mumbai</strong>,
-            currently pursuing a <strong>B.Tech in Computer Science</strong> with a <strong>7.2 CGPA</strong>, while building full-stack products and practical AI-driven experiences.
+            I'm a final-year Computer Science undergraduate at <strong>Sardar Patel Institute of Technology, Mumbai</strong>
+            (2022 – 2026, <strong>7.2 CGPA</strong>), building full-stack products and practical AI-driven experiences.
           </p>
           <p>
-            My work spans robust web platforms and applied AI systems — from React and Next.js interfaces to backend architecture in Node.js, Express, PHP, and Django. I enjoy building reliable APIs, secure authentication, scalable data layers, and thoughtful user experiences that make real impact.
+            My work spans robust web platforms and applied AI systems — from React and Next.js interfaces to backend
+            architecture in Node.js, Express, PHP, and Django. I enjoy building reliable APIs, secure authentication,
+            scalable data layers, and thoughtful user experiences that make a real, measurable impact.
           </p>
           <p>
-            I’ve also taken initiative beyond code by leading technical workshops and mentoring students, which helped me sharpen both communication and execution under real-world constraints.
+            I've also taken initiative beyond code — leading technical workshops and mentoring students — which sharpened
+            both communication and execution under real-world constraints.
           </p>
         </div>
 
@@ -194,12 +208,12 @@
             <span class="stat-card__label">CGPA <span class="mono dim">/ 10</span></span>
           </div>
           <div class="stat-card spotlight-card">
-            <span class="stat-card__num" data-count="3">0</span>
-            <span class="stat-card__label">shipped projects</span>
+            <span class="stat-card__num" data-count="500" data-suffix="+">0</span>
+            <span class="stat-card__label">DSA problems solved</span>
           </div>
           <div class="stat-card spotlight-card">
-            <span class="stat-card__num" data-count="10">0</span>
-            <span class="stat-card__label">coordinators led</span>
+            <span class="stat-card__num" data-count="3">0</span>
+            <span class="stat-card__label">shipped projects</span>
           </div>
           <div class="stat-card spotlight-card">
             <span class="stat-card__num" data-count="97.4" data-decimal="true">0</span>
@@ -223,15 +237,15 @@
             <div class="timeline__head">
               <div>
                 <h3 class="timeline__role">Software Development Intern</h3>
-                <p class="timeline__org">Origins Tribes Pvt. Ltd.</p>
+                <p class="timeline__org">Origins Tribes Pvt. Ltd. <span class="dim">· FMCG</span></p>
               </div>
               <span class="timeline__date mono">Jan 2026 — Jun 2026</span>
             </div>
 
             <ul class="timeline__list">
-              <li>Architected a high-performance database layer using AI-assisted coding tools for intelligent query optimization and strategic indexing, reducing API response times by 45% and improving scalability under production load.</li>
+              <li>Architected a high-performance database layer using AI-assisted coding tools for intelligent query optimization and strategic indexing, <strong>reducing API response times by 45%</strong> and improving scalability under production load.</li>
               <li>Designed backend infrastructure with AI agents for architecture planning and automated code quality validation, improving reliability and accelerating delivery to production.</li>
-              <li>Developed and tested 25+ RESTful APIs and React.js components using PHP, SQL, Postman, and Thunder Client, enabling seamless frontend-backend integration for the platform.</li>
+              <li>Developed and tested <strong>25+ RESTful APIs</strong> and React.js components using PHP, SQL, Postman, and Thunder Client, enabling seamless frontend-backend integration for the platform.</li>
             </ul>
 
             <div class="tag-row">
@@ -273,12 +287,12 @@
           </div>
 
           <h3 class="project-card__title">InfinityPlay</h3>
-          <p class="project-card__tagline">Full-stack web platform for playing classic Flash games in modern browsers using the Ruffle emulator.</p>
+          <p class="project-card__tagline">Full-stack platform for playing classic Flash games in modern browsers using the Ruffle emulator.</p>
 
           <ul class="project-card__points">
-            <li>Integrated the Ruffle emulator to enable browser-based execution of 100+ legacy Flash games without requiring Adobe Flash Player, providing seamless gameplay across modern browsers.</li>
-            <li>Engineered file storage and retrieval using MongoDB GridFS for SWF game files and thumbnails, with Next.js API routes supporting upload, retrieval, deletion, categorization, voting, and issue reporting.</li>
-            <li>Configured JWT-based authentication and role-based access control for admins and super users, securing game and administrator management operations.</li>
+            <li>Integrated the Ruffle emulator to enable browser-based execution of <strong>100+ legacy Flash games</strong> without requiring Adobe Flash Player.</li>
+            <li>Engineered file storage using MongoDB GridFS for SWF files and thumbnails, with Next.js API routes for upload, retrieval, categorization, voting, and issue reporting.</li>
+            <li>Configured JWT-based authentication and role-based access control for admins and super users.</li>
           </ul>
 
           <div class="tag-row">
@@ -303,11 +317,11 @@
           </div>
 
           <h3 class="project-card__title">ResuFit</h3>
-          <p class="project-card__tagline">AI-powered full-stack resume analysis platform providing ATS-style scoring and personalized resume improvement feedback.</p>
+          <p class="project-card__tagline">AI-powered resume analysis platform with ATS-style scoring and personalized feedback.</p>
 
           <ul class="project-card__points">
-            <li>Created 10+ RESTful APIs using Node.js and Express.js for resume uploads, revision history, and administrative workflows, integrating Cohere AI to generate ATS match scores in under 15 seconds per resume.</li>
-            <li>Designed a React.js dashboard for resume analysis, score visualization, and revision tracking, with Firebase Authentication and role-based access control supporting 100+ test users.</li>
+            <li>Built <strong>10+ RESTful APIs</strong> with Node.js and Express.js for uploads, revision history, and admin workflows, integrating Cohere AI to generate ATS scores in <strong>under 15 seconds</strong>.</li>
+            <li>Designed a React dashboard for resume analysis, score visualization, and revision tracking, with Firebase Auth supporting 100+ test users.</li>
           </ul>
 
           <div class="tag-row">
@@ -333,11 +347,11 @@
           </div>
 
           <h3 class="project-card__title">ShareKare</h3>
-          <p class="project-card__tagline">Full-stack donation and redistribution platform connecting individual donors with NGOs.</p>
+          <p class="project-card__tagline">Donation and redistribution platform connecting individual donors with NGOs.</p>
 
           <ul class="project-card__points">
-            <li>Architected role-based dashboards for donors, NGOs, and administrators using Django Authentication, providing 3 distinct access levels and reducing donation moderation time by 25%.</li>
-            <li>Integrated the Leaflet Maps API for location-based donation discovery within a 10km radius, along with campaign calendar invites and real-time notifications, improving user engagement during testing by 30%.</li>
+            <li>Architected role-based dashboards for donors, NGOs, and administrators, <strong>reducing donation moderation time by 25%</strong> across 3 access levels.</li>
+            <li>Integrated Leaflet Maps for location-based donation discovery within a 10km radius, with calendar invites and live notifications — <strong>+30% engagement</strong> in testing.</li>
           </ul>
 
           <div class="tag-row">
@@ -397,6 +411,7 @@
             <span class="tag tag--lg">GitHub Copilot</span>
             <span class="tag tag--lg">Gemini CLI</span>
             <span class="tag tag--lg">Claude Code</span>
+            <span class="tag tag--lg">Antigravity</span>
           </div>
         </div>
 
@@ -425,17 +440,17 @@
         <div class="edu-card spotlight-card reveal">
           <div class="edu-card__head">
             <h3>Sardar Patel Institute of Technology</h3>
-            <span class="mono edu-card__date">2022 — Present</span>
+            <span class="mono edu-card__date">2022 — 2026</span>
           </div>
           <p class="edu-card__degree">Bachelor of Technology in Computer Science</p>
           <p class="edu-card__meta">Mumbai, India &nbsp;·&nbsp; CGPA: 7.2</p>
           <div class="tag-row">
-            <span class="tag">Database Management System</span>
-            <span class="tag">Object Oriented Programming</span>
-            <span class="tag">Machine Learning</span>
+            <span class="tag">Database Management Systems</span>
             <span class="tag">Data Structures &amp; Algorithms</span>
+            <span class="tag">Object Oriented Programming</span>
             <span class="tag">Operating Systems</span>
-            <span class="tag">Algorithm Analysis</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Computer Networks</span>
           </div>
         </div>
 
@@ -448,30 +463,15 @@
           <p class="edu-card__meta">Jammu, India &nbsp;·&nbsp; Percentage: 97.4%</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ============ CERTIFICATIONS ============ -->
-  <section class="section section--alt" id="certifications">
-    <div class="section__inner">
-      <p class="section__eyebrow reveal"><span class="mono">// 06</span> certifications</p>
-      <h2 class="section__title reveal">Credentials I’ve earned.</h2>
-
-      <div class="edu__grid">
-        <div class="edu-card spotlight-card reveal">
-          <div class="edu-card__head">
-            <h3>Web Development Fundamentals</h3>
-            <span class="mono edu-card__date">IBM SkillsBuild</span>
-          </div>
-          <p class="edu-card__degree">Certificate</p>
+      <div class="cert-row reveal">
+        <div class="cert-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6.5 12 11l9-4.5L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 6.5v11L12 22V11M21 6.5v11L12 22" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span>Web Development Fundamentals <span class="dim">— IBM SkillsBuild</span></span>
         </div>
-
-        <div class="edu-card spotlight-card reveal">
-          <div class="edu-card__head">
-            <h3>Artificial Intelligence Fundamentals</h3>
-            <span class="mono edu-card__date">IBM SkillsBuild</span>
-          </div>
-          <p class="edu-card__degree">Certificate</p>
+        <div class="cert-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2 3 6.5 12 11l9-4.5L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 6.5v11L12 22V11M21 6.5v11L12 22" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span>Artificial Intelligence Fundamentals <span class="dim">— IBM SkillsBuild</span></span>
         </div>
       </div>
     </div>
@@ -497,7 +497,7 @@
           <div class="extra-card__icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 6.5C10.5 4.5 7.8 4 6 5.5c-2 1.7-2 4.7 0 6.5l6 5.5 6-5.5c2-1.8 2-4.8 0-6.5-1.8-1.5-4.5-1-6 1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
           </div>
-          <h3>Mentor, Abhyudaya–SPJIMR</h3>
+          <h3>Mentor, Abhyudaya – SPJIMR</h3>
           <p class="extra-card__org">SPJIMR</p>
           <p>Guided students (Grades 7–10) in academics and life skills; tracked progress of underprivileged learners.</p>
         </div>

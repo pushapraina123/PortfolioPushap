@@ -70,6 +70,47 @@
   window.addEventListener('scroll', onScrollProgress, { passive: true });
 
   /* ---------------------------------------------------------
+     MATRIX BACKGROUND NUMBERS
+  --------------------------------------------------------- */
+  const matrixBg = document.getElementById('matrixBg');
+  if (matrixBg && !prefersReducedMotion) {
+    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ#*&^%<>/[]{}()=+-|;:!?@~';
+    const columnCount = 36;
+
+    for (let i = 0; i < columnCount; i++) {
+      const column = document.createElement('div');
+      column.className = 'matrix-column';
+      column.style.left = (i * (100 / columnCount) + (Math.random() * 3.2)) + '%';
+      column.style.animationDuration = (9 + Math.random() * 10) + 's';
+      column.style.animationDelay = (-Math.random() * 12) + 's';
+      column.style.opacity = (0.45 + Math.random() * 0.55).toFixed(2);
+
+      const spans = Array.from({ length: 14 + Math.floor(Math.random() * 16) }, () => {
+        const span = document.createElement('span');
+        span.textContent = chars[Math.floor(Math.random() * chars.length)];
+        return span;
+      });
+
+      spans.forEach((span) => column.appendChild(span));
+      matrixBg.appendChild(column);
+    }
+  }
+
+  /* ---------------------------------------------------------
+     HERO PARALLAX GLOW — the ambient blob drifts slightly
+     slower than scroll for a subtle depth cue
+  --------------------------------------------------------- */
+  const heroGlow = document.getElementById('heroGlow');
+  if (heroGlow && !prefersReducedMotion) {
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        heroGlow.style.transform = `translateY(${y * 0.15}px)`;
+      }
+    }, { passive: true });
+  }
+
+  /* ---------------------------------------------------------
      CURSOR GLOW (desktop only, decorative)
   --------------------------------------------------------- */
   const glow = document.querySelector('.cursor-glow');
@@ -166,9 +207,9 @@
   const typewriterEl = document.getElementById('typewriter');
   const roles = [
     'Full-Stack Developer',
-    'React & Node.js Engineer',
-    'Applied NLP Enthusiast',
-    'Computer Science Student'
+    'React · Next.js · Node.js',
+    'Building AI-powered products',
+    '500+ DSA problems solved'
   ];
 
   function startTypewriter() {
@@ -211,13 +252,14 @@
   const editorCode = document.querySelector('#editorCode code');
 
   const codeLines = [
-    { text: '// building products end to end', cls: 'tok-com' },
+    { text: '// always shipping something', cls: 'tok-com' },
     { text: 'const developer = {', cls: null },
     { text: '  name: ', cls: null, tail: [['"Pushap Raina"', 'tok-str']] },
     { text: '  role: ', cls: null, tail: [['"Full-Stack Developer"', 'tok-str']] },
     { text: '  based: ', cls: null, tail: [['"Mumbai, India"', 'tok-str']] },
-    { text: '  stack: [', cls: null, tail: [['"React"', 'tok-str'], [', ', null], ['"Node.js"', 'tok-str'], [', ', null], ['"MongoDB"', 'tok-str'], ['],', null]] },
-    { text: '  passion: ', cls: null, tail: [['"Software Engineering"', 'tok-str']] },
+    { text: '  stack: [', cls: null, tail: [['"React"', 'tok-str'], [', ', null], ['"Next.js"', 'tok-str'], [', ', null], ['"Node.js"', 'tok-str'], [', ', null], ['"C++"', 'tok-str'], ['],', null]] },
+    { text: '  dsaSolved: ', cls: null, tail: [['500', 'tok-prop']] },
+    { text: '  ', cls: null, tail: [['availableForWork', 'tok-fn'], [': ', null], ['true', 'tok-prop'], [',', null]] },
     { text: '};', cls: null },
     { text: '', cls: null },
     { text: 'function', cls: 'tok-key', tail: [[' shipIt', 'tok-fn'], ['(idea) {', null]] },
@@ -307,8 +349,9 @@
         const el = entry.target;
         const target = parseFloat(el.getAttribute('data-count'));
         const isDecimal = el.getAttribute('data-decimal') === 'true';
+        const suffix = el.getAttribute('data-suffix') || '';
         if (prefersReducedMotion) {
-          el.textContent = isDecimal ? target.toFixed(1) : String(target);
+          el.textContent = (isDecimal ? target.toFixed(1) : String(target)) + suffix;
           obs.unobserve(el);
           return;
         }
@@ -318,7 +361,7 @@
           const progress = Math.min((now - start) / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 3);
           const value = target * eased;
-          el.textContent = isDecimal ? value.toFixed(1) : Math.round(value);
+          el.textContent = (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
           if (progress < 1) requestAnimationFrame(frame);
         }
         requestAnimationFrame(frame);
@@ -330,7 +373,7 @@
   statNums.forEach((el) => countObserver.observe(el));
 
   /* ---------------------------------------------------------
-     CONTACT FORM — validation + mailto (no backend)
+     CONTACT FORM — validation + EmailJS send
   --------------------------------------------------------- */
   const form = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
@@ -352,7 +395,7 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
   }
 
- // ---- EmailJS config — fill in your own values from the dashboard ----
+  // ---- EmailJS config — fill in your own values from the dashboard ----
   const EMAILJS_PUBLIC_KEY = 'ElhlwQ4hpsqVwntVc';
   const EMAILJS_SERVICE_ID = 'service_vy2wpzq';
   const EMAILJS_TEMPLATE_ID = 'template_2qmin89';
@@ -376,7 +419,7 @@
       else setError('name', '');
 
       if (!email) { setError('email', 'Please enter your email.'); valid = false; }
-      else if (!isValidEmail(email)) { setError('email', 'That email doesn\'t look right.'); valid = false; }
+      else if (!isValidEmail(email)) { setError('email', "That email doesn't look right."); valid = false; }
       else setError('email', '');
 
       if (!subject) { setError('subject', 'Please add a subject.'); valid = false; }
@@ -401,7 +444,7 @@
         subject: `[Portfolio] ${subject}`,
         message: message
       }).then(() => {
-        formStatus.textContent = 'Message sent — thanks! I\'ll get back to you soon.';
+        formStatus.textContent = "Message sent — thanks! I'll get back to you soon.";
         form.reset();
         ['name', 'email', 'subject', 'message'].forEach((id) => setError(id, ''));
         submitBtn.disabled = false;
@@ -410,8 +453,8 @@
         formStatus.textContent = 'Something went wrong — please email me directly at rainapushap96@gmail.com';
         submitBtn.disabled = false;
         console.log(error);
-    console.log(error.text);
-    console.log(error.status);
+        console.log(error.text);
+        console.log(error.status);
       });
     });
 
@@ -523,7 +566,7 @@
         '  <span class="tok-str">skills</span>         — tech I use',
         '  <span class="tok-str">education</span>      — where I studied',
         '  <span class="tok-str">contact</span>        — get in touch',
-        '  <span class="tok-str">social</span>         — GitHub / LinkedIn / email',
+        '  <span class="tok-str">social</span>         — GitHub / LinkedIn / LeetCode / email',
         '  <span class="tok-str">resume</span>         — download my CV',
         '  <span class="tok-str">whoami</span>         — one-line intro',
         '  <span class="tok-str">clear</span>          — clear this terminal',
@@ -537,7 +580,7 @@
     education: () => scrollToSection('education'),
     contact: () => scrollToSection('contact'),
     social: () => {
-      printLine('GitHub: <a href="https://github.com/pushapraina123" target="_blank" rel="noopener">github.com/pushapraina123</a>\nLinkedIn: <a href="https://linkedin.com/in/pushap-raina" target="_blank" rel="noopener">linkedin.com/in/pushap-raina</a>\nEmail: <a href="mailto:rainapushap96@gmail.com">rainapushap96@gmail.com</a>');
+      printLine('GitHub: <a href="https://github.com/pushapraina123" target="_blank" rel="noopener">github.com/pushapraina123</a>\nLinkedIn: <a href="https://linkedin.com/in/pushap-raina" target="_blank" rel="noopener">linkedin.com/in/pushap-raina</a>\nLeetCode: <a href="https://leetcode.com/pushapraina123" target="_blank" rel="noopener">leetcode.com/pushapraina123</a>\nEmail: <a href="mailto:rainapushap96@gmail.com">rainapushap96@gmail.com</a>');
     },
     resume: () => {
       const resumeLink = document.querySelector('.hero__actions a[download]');
@@ -549,7 +592,7 @@
       resumeLink.click();
     },
     whoami: () => {
-      printLine('Pushap Raina — CS student at SPIT Mumbai, full-stack developer, occasional NLP tinkerer.');
+      printLine('Pushap Raina — final-year CS undergrad at SPIT Mumbai, full-stack developer, 500+ DSA problems deep.');
     },
     clear: () => {
       termBody.innerHTML = '';
