@@ -29,19 +29,17 @@ html {
 }
 
 body {
-  background: radial-gradient(
-      circle at top,
-      rgba(127, 226, 176, 0.1),
-      transparent 28%
-    ),
-    radial-gradient(circle at right, rgba(159, 233, 214, 0.08), transparent 24%),
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(124,58,237,0.18), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(6,214,160,0.12), transparent),
     var(--bg);
   color: var(--text);
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  font-feature-settings: "ss01", "cv01";
 }
 
 .matrix-bg {
@@ -69,18 +67,18 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.42rem;
-  color: rgba(127, 224, 208, 0.78);
+  color: rgba(167, 139, 250, 0.6);
   font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1;
   letter-spacing: 0.08em;
   mix-blend-mode: screen;
   animation: matrix-fall linear infinite;
-  text-shadow: 0 0 14px rgba(127, 224, 208, 0.32);
+  text-shadow: 0 0 14px rgba(124, 58, 237, 0.25);
 }
 .matrix-column span {
   display: block;
-  opacity: 0.92;
+  opacity: 0.85;
   filter: blur(0.12px);
 }
 @keyframes matrix-fall {
@@ -178,8 +176,8 @@ textarea:focus-visible {
   pointer-events: none;
   z-index: 2;
   background: radial-gradient(
-    500px circle at var(--x, 50%) var(--y, 30%),
-    rgba(127, 226, 176, 0.08),
+    550px circle at var(--x, 50%) var(--y, 30%),
+    rgba(124, 58, 237, 0.07),
     transparent 60%
   );
   transition: opacity 0.3s ease;

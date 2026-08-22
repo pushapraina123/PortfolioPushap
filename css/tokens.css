@@ -1,40 +1,49 @@
 /* ==========================================================================
-   TOKENS
+   TOKENS — Deep Space Violet × Cyan edition
    ========================================================================== */
 :root {
-  /* Surfaces — dark green / pine base */
-  --bg: #071a16;
-  --bg-elevated: #0d261f;
-  --bg-elevated-2: #12352e;
-  --border: #214b42;
-  --border-soft: #1a3832;
+  /* Surfaces */
+  --bg: #050818;
+  --bg-elevated: #090d20;
+  --bg-elevated-2: #0e1330;
+  --border: #1c2448;
+  --border-soft: #131a38;
 
   /* Text */
-  --text: #edfdf7;
-  --text-dim: #b9d7cd;
-  --text-faint: #7ca79e;
+  --text: #eef1ff;
+  --text-dim: #8b97c4;
+  --text-faint: #4a5480;
 
-  /* Accents — softer green / mint palette */
-  --accent: #7fe2b0;
-  --accent-soft: rgba(127, 226, 176, 0.14);
-  --accent-2: #9fe9d6;
-  --accent-2-soft: rgba(159, 233, 214, 0.12);
+  /* Primary accent — electric violet */
+  --accent: #7c3aed;
+  --accent-bright: #a78bfa;
+  --accent-soft: rgba(124, 58, 237, 0.16);
+
+  /* Secondary accent — emerald cyan */
+  --accent-2: #06d6a0;
+  --accent-2-soft: rgba(6, 214, 160, 0.12);
+
+  /* Tertiary — warm amber for highlights */
+  --accent-3: #f59e0b;
 
   /* Gradients */
-  --grad-accent: linear-gradient(135deg, #7fe2b0 0%, #5fc7bb 100%);
-  --grad-text: linear-gradient(100deg, #f1fff8 0%, #7fe2b0 42%, #9fe9d6 100%);
+  --grad-accent: linear-gradient(135deg, #7c3aed 0%, #06d6a0 100%);
+  --grad-accent-v: linear-gradient(180deg, #7c3aed 0%, #06d6a0 100%);
+  --grad-text: linear-gradient(110deg, #eef1ff 0%, #a78bfa 45%, #06d6a0 100%);
+  --grad-card: linear-gradient(145deg, rgba(124,58,237,0.08), rgba(6,214,160,0.06));
 
   /* Type */
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "Fira Code", monospace;
 
   /* Layout */
-  --max-w: 1180px;
+  --max-w: 1200px;
   --pad: clamp(1.25rem, 4vw, 3rem);
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
 
   /* Motion */
   --ease: cubic-bezier(0.16, 0.84, 0.44, 1);

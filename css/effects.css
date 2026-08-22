@@ -1,6 +1,6 @@
-/* ==========================================================================
-   EFFECTS.CSS  —  Premium visual polish layer
-   Animations · 3D cards · Glows · Noise · Particles · Micro-interactions
+﻿/* ==========================================================================
+   EFFECTS.CSS  â€”  Premium visual polish layer
+   Animations Â· 3D cards Â· Glows Â· Noise Â· Particles Â· Micro-interactions
    ========================================================================== */
 
 /* ------------------------------------------------------------------
@@ -51,19 +51,19 @@ body::before {
 .ambient-orb--1 {
   width: 38vw; height: 38vw;
   top: -8%; left: -6%;
-  background: radial-gradient(circle, rgba(127,226,176,0.18), transparent 60%);
+  background: radial-gradient(circle, rgba(167,139,250,0.18), transparent 60%);
   animation: orb-float-1 22s ease-in-out infinite;
 }
 .ambient-orb--2 {
   width: 30vw; height: 30vw;
   top: 30%; right: -5%;
-  background: radial-gradient(circle, rgba(95,199,187,0.14), transparent 60%);
+  background: radial-gradient(circle, rgba(124,58,237,0.14), transparent 60%);
   animation: orb-float-2 18s ease-in-out infinite;
 }
 .ambient-orb--3 {
   width: 24vw; height: 24vw;
   bottom: 10%; left: 25%;
-  background: radial-gradient(circle, rgba(159,233,214,0.10), transparent 60%);
+  background: radial-gradient(circle, rgba(6,214,160,0.10), transparent 60%);
   animation: orb-float-3 26s ease-in-out infinite;
 }
 @keyframes orb-float-1 {
@@ -88,10 +88,10 @@ body::before {
   height: 3px;
 }
 .scroll-progress__bar {
-  background: linear-gradient(90deg, #5fc7bb, #7fe2b0, #9fe9d6, #7fe2b0);
+  background: linear-gradient(90deg, #6d28d9, #a78bfa, #06d6a0, #a78bfa);
   background-size: 300% 100%;
   animation: progress-shimmer 3s linear infinite;
-  box-shadow: 0 0 16px rgba(127,226,176,0.7), 0 0 40px rgba(127,226,176,0.3);
+  box-shadow: 0 0 16px rgba(167,139,250,0.7), 0 0 40px rgba(167,139,250,0.3);
 }
 @keyframes progress-shimmer {
   0%   { background-position: 0% 50%; }
@@ -134,7 +134,7 @@ body::before {
   box-shadow:
     0 30px 60px -20px rgba(0,0,0,0.6),
     0 0 0 1px var(--border),
-    0 0 40px -10px rgba(127,226,176,0.15);
+    0 0 40px -10px rgba(167,139,250,0.15);
 }
 
 /* ------------------------------------------------------------------
@@ -171,7 +171,7 @@ body::before {
    8. NAV GLOW ACTIVE LINK
    ------------------------------------------------------------------ */
 .nav__link.is-active {
-  text-shadow: 0 0 16px rgba(127,226,176,0.5);
+  text-shadow: 0 0 16px rgba(167,139,250,0.5);
 }
 
 /* ------------------------------------------------------------------
@@ -199,7 +199,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------------
-   10. STAT CARDS — holographic sheen
+   10. STAT CARDS â€” holographic sheen
    ------------------------------------------------------------------ */
 .stat-card {
   position: relative;
@@ -215,7 +215,7 @@ body::before {
   background: linear-gradient(
     105deg,
     transparent 40%,
-    rgba(127,226,176,0.08) 50%,
+    rgba(167,139,250,0.08) 50%,
     transparent 60%
   );
   transform: skewX(-20deg);
@@ -229,7 +229,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------------
-   11. PROJECT CARDS — glow depth
+   11. PROJECT CARDS â€” glow depth
    ------------------------------------------------------------------ */
 .project-card {
   transform-style: preserve-3d;
@@ -240,7 +240,7 @@ body::before {
 .project-card:hover {
   box-shadow:
     0 26px 50px -24px rgba(0,0,0,0.55),
-    0 0 40px -12px rgba(127,226,176,0.2);
+    0 0 40px -12px rgba(167,139,250,0.2);
 }
 
 /* ------------------------------------------------------------------
@@ -258,7 +258,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------------
-   13. SKILL GROUP — animated accent top sweep
+   13. SKILL GROUP â€” animated accent top sweep
    ------------------------------------------------------------------ */
 .skill-group {
   position: relative;
@@ -274,12 +274,12 @@ body::before {
   background: var(--grad-accent);
   border-radius: 0 0 2px 0;
   transition: left 0.55s var(--ease-out);
-  box-shadow: 0 0 12px rgba(127,226,176,0.5);
+  box-shadow: 0 0 12px rgba(167,139,250,0.5);
 }
 .skill-group:hover::after { left: 100%; }
 
 /* ------------------------------------------------------------------
-   14. EDUCATION CARD — corner accent glow
+   14. EDUCATION CARD â€” corner accent glow
    ------------------------------------------------------------------ */
 .edu-card {
   position: relative;
@@ -307,20 +307,20 @@ body::before {
 }
 .extra-card:hover .extra-card__icon {
   transform: scale(1.15) rotate(-6deg);
-  box-shadow: 0 0 20px rgba(159,233,214,0.3);
+  box-shadow: 0 0 20px rgba(6,214,160,0.3);
 }
 
 /* ------------------------------------------------------------------
-   16. BUTTON — enhanced shimmer + glow
+   16. BUTTON â€” enhanced shimmer + glow
    ------------------------------------------------------------------ */
 .btn--primary {
   background: linear-gradient(
     110deg,
-    #5fc7bb 0%,
-    #7fe2b0 30%,
-    #9fe9d6 50%,
-    #7fe2b0 70%,
-    #5fc7bb 100%
+    #6d28d9 0%,
+    #a78bfa 30%,
+    #06d6a0 50%,
+    #a78bfa 70%,
+    #6d28d9 100%
   );
   background-size: 250% auto;
   animation: btn-shimmer 4s linear infinite;
@@ -335,8 +335,8 @@ body::before {
 .btn--primary:hover {
   transform: translateY(-3px) scale(1.03);
   box-shadow:
-    0 12px 36px -10px rgba(127,226,176,0.55),
-    0 0 0 1px rgba(127,226,176,0.2);
+    0 12px 36px -10px rgba(167,139,250,0.55),
+    0 0 0 1px rgba(167,139,250,0.2);
 }
 
 /* ------------------------------------------------------------------
@@ -353,14 +353,14 @@ body::before {
   transform: translate(-50%, -50%);
   transition: width 0.18s, height 0.18s, opacity 0.18s, background 0.18s;
   mix-blend-mode: screen;
-  box-shadow: 0 0 10px rgba(127,226,176,0.8);
+  box-shadow: 0 0 10px rgba(167,139,250,0.8);
 }
 .cursor-ring {
   position: fixed;
   top: 0; left: 0;
   width: 36px; height: 36px;
   border-radius: 50%;
-  border: 1.5px solid rgba(127,226,176,0.45);
+  border: 1.5px solid rgba(167,139,250,0.45);
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
@@ -375,7 +375,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------------
-   18. SECTION EYEBROW — live dot
+   18. SECTION EYEBROW â€” live dot
    ------------------------------------------------------------------ */
 .section__eyebrow::before {
   content: "";
@@ -383,40 +383,40 @@ body::before {
   width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--accent-2);
-  box-shadow: 0 0 0 0 rgba(159,233,214,0.6);
+  box-shadow: 0 0 0 0 rgba(6,214,160,0.6);
   animation: eyebrow-pulse 2.5s ease-out infinite;
   flex-shrink: 0;
   margin-right: 2px;
 }
 @keyframes eyebrow-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(159,233,214,0.6); }
-  70%  { box-shadow: 0 0 0 7px rgba(159,233,214,0); }
-  100% { box-shadow: 0 0 0 0 rgba(159,233,214,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(6,214,160,0.6); }
+  70%  { box-shadow: 0 0 0 7px rgba(6,214,160,0); }
+  100% { box-shadow: 0 0 0 0 rgba(6,214,160,0); }
 }
 
 /* ------------------------------------------------------------------
-   19. FOOTER — hover glow
+   19. FOOTER â€” hover glow
    ------------------------------------------------------------------ */
 .footer__inner .dim {
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 .footer__inner .dim:hover {
   color: var(--accent-2);
-  text-shadow: 0 0 16px rgba(159,233,214,0.4);
+  text-shadow: 0 0 16px rgba(6,214,160,0.4);
 }
 
 /* ------------------------------------------------------------------
-   20. CONTACT FORM — enhanced focus glow
+   20. CONTACT FORM â€” enhanced focus glow
    ------------------------------------------------------------------ */
 .field input:focus,
 .field textarea:focus {
   box-shadow:
     0 0 0 3px var(--accent-soft),
-    0 0 20px rgba(127,226,176,0.15);
+    0 0 20px rgba(167,139,250,0.15);
 }
 
 /* ------------------------------------------------------------------
-   21. COPY BUTTON — success flash
+   21. COPY BUTTON â€” success flash
    ------------------------------------------------------------------ */
 .copy-btn.is-copied {
   background: var(--accent-soft);
@@ -440,7 +440,7 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   23. HERO GRID — breathe
+   23. HERO GRID â€” breathe
    ------------------------------------------------------------------ */
 .hero__grid {
   animation: grid-breathe 10s ease-in-out infinite;
@@ -451,15 +451,15 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   24. SOCIAL LINKS — glow on hover
+   24. SOCIAL LINKS â€” glow on hover
    ------------------------------------------------------------------ */
 .social-link:hover {
-  box-shadow: 0 0 20px rgba(127,226,176,0.3);
+  box-shadow: 0 0 20px rgba(167,139,250,0.3);
   background: var(--accent-soft);
 }
 
 /* ------------------------------------------------------------------
-   25. TAGS — shimmer sweep
+   25. TAGS â€” shimmer sweep
    ------------------------------------------------------------------ */
 .tag {
   position: relative;
@@ -469,7 +469,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(127,226,176,0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(167,139,250,0.1), transparent);
   transform: translateX(-100%);
 }
 .tag:hover::before {
@@ -480,23 +480,23 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   26. CERT CHIPS — sparkle
+   26. CERT CHIPS â€” sparkle
    ------------------------------------------------------------------ */
 .cert-chip:hover {
   background: var(--accent-soft);
-  box-shadow: 0 0 18px rgba(127,226,176,0.2);
+  box-shadow: 0 0 18px rgba(167,139,250,0.2);
 }
 
 /* ------------------------------------------------------------------
-   27. ICON-LINKS — glow
+   27. ICON-LINKS â€” glow
    ------------------------------------------------------------------ */
 .icon-link:hover {
   background: var(--accent-soft);
-  box-shadow: 0 0 14px rgba(127,226,176,0.25);
+  box-shadow: 0 0 14px rgba(167,139,250,0.25);
 }
 
 /* ------------------------------------------------------------------
-   28. NAV BAR — glassmorphism on scroll
+   28. NAV BAR â€” glassmorphism on scroll
    ------------------------------------------------------------------ */
 .nav.is-scrolled {
   background: rgba(7,26,22,0.82);
@@ -511,7 +511,7 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   30. SCROLL CUE — breathing glow
+   30. SCROLL CUE â€” breathing glow
    ------------------------------------------------------------------ */
 .scroll-cue {
   animation: scroll-cue-breathe 3s ease-in-out infinite;
@@ -522,7 +522,7 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   31. NAV LOGO — subtle shimmer
+   31. NAV LOGO â€” subtle shimmer
    ------------------------------------------------------------------ */
 .nav__logo {
   background: linear-gradient(110deg, var(--text) 40%, var(--accent) 60%, var(--text) 80%);
@@ -543,11 +543,12 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   32. BACK TO TOP — glow pulse
+   32. BACK TO TOP â€” glow pulse
    ------------------------------------------------------------------ */
 #backToTop:hover {
   color: var(--accent);
   border-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: 0 0 18px rgba(127,226,176,0.3);
+  box-shadow: 0 0 18px rgba(167,139,250,0.3);
 }
+

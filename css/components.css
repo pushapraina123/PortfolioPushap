@@ -121,10 +121,21 @@
   padding: 0.5rem 0.9rem;
 }
 .tag__icon {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
   vertical-align: -0.08em;
   margin-right: 0.5rem;
-  flex: 0 0 14px;
+  flex: 0 0 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(127,226,176,0.06), rgba(127,226,176,0.02));
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.tag__icon svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+  fill: var(--text-dim);
 }
