@@ -1,657 +1,694 @@
 (function () {
-  'use strict';
+  "use strict";
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  const supportsObserver = "IntersectionObserver" in window;
 
-  /* ---------------------------------------------------------
-     NAV: scrolled state, mobile toggle, active-link tracking,
-     smooth-scroll with fixed-header offset
-  --------------------------------------------------------- */
-  const nav = document.getElementById('nav');
-  const navToggle = document.getElementById('navToggle');
-  const navMobile = document.getElementById('navMobile');
-  const navLinkEls = document.querySelectorAll('[data-nav]');
+  /* Shared navigation */
+  const nav = document.getElementById("nav");
+  const navToggle = document.getElementById("navToggle");
+  const navMobile = document.getElementById("navMobile");
+  const navLinks = Array.from(document.querySelectorAll("[data-nav]"));
 
-  function onScrollNav() {
-    nav.classList.toggle('is-scrolled', window.scrollY > 12);
+  if (nav) {
+    const onScrollNav = () =>
+      nav.classList.toggle("is-scrolled", window.scrollY > 12);
+    onScrollNav();
+    window.addEventListener("scroll", onScrollNav, { passive: true });
   }
-  onScrollNav();
-  window.addEventListener('scroll', onScrollNav, { passive: true });
 
-  navToggle.addEventListener('click', () => {
-    const isOpen = navMobile.classList.toggle('is-open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  navLinkEls.forEach((link) => {
-    link.addEventListener('click', () => {
-      navMobile.classList.remove('is-open');
-      navToggle.setAttribute('aria-expanded', 'false');
+  if (navToggle && navMobile) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = navMobile.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", String(isOpen));
     });
-  });
-
-  // Active section highlighting
-  const sections = Array.from(document.querySelectorAll('main section[id]'));
-  const navByHash = new Map();
-  navLinkEls.forEach((a) => {
-    const hash = a.getAttribute('href');
-    if (!navByHash.has(hash)) navByHash.set(hash, []);
-    navByHash.get(hash).push(a);
-  });
-
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const hash = '#' + entry.target.id;
-        const links = navByHash.get(hash);
-        if (!links) return;
-        if (entry.isIntersecting) {
-          navLinkEls.forEach((l) => l.classList.remove('is-active'));
-          links.forEach((l) => l.classList.add('is-active'));
-        }
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navMobile.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
       });
-    },
-    { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
-  );
-  sections.forEach((s) => sectionObserver.observe(s));
-
-  /* ---------------------------------------------------------
-     SCROLL PROGRESS BAR
-  --------------------------------------------------------- */
-  const scrollBar = document.getElementById('scrollBar');
-  function onScrollProgress() {
-    const h = document.documentElement;
-    const scrolled = h.scrollTop;
-    const max = h.scrollHeight - h.clientHeight;
-    const pct = max > 0 ? (scrolled / max) * 100 : 0;
-    scrollBar.style.width = pct + '%';
+    });
   }
-  onScrollProgress();
-  window.addEventListener('scroll', onScrollProgress, { passive: true });
 
-  /* ---------------------------------------------------------
-     MATRIX BACKGROUND NUMBERS
-  --------------------------------------------------------- */
-  const matrixBg = document.getElementById('matrixBg');
+  const currentPage = document.body.dataset.page;
+  if (currentPage) {
+    navLinks.forEach((link) => {
+      const fileName =
+        new URL(link.href, window.location.href).pathname.split("/").pop() ||
+        "index.html";
+      const linkPage =
+        fileName === "index.html" ? "home" : fileName.replace(/\.html$/i, "");
+      const isCurrent = linkPage === currentPage;
+      link.classList.toggle("is-active", isCurrent);
+      if (isCurrent) link.setAttribute("aria-current", "page");
+      else link.removeAttribute("aria-current");
+    });
+  }
+
+  /* Progress bar */
+  const scrollBar = document.getElementById("scrollBar");
+  if (scrollBar) {
+    const onScrollProgress = () => {
+      const root = document.documentElement;
+      const max = root.scrollHeight - root.clientHeight;
+      scrollBar.style.width =
+        (max > 0 ? (root.scrollTop / max) * 100 : 0) + "%";
+    };
+    onScrollProgress();
+    window.addEventListener("scroll", onScrollProgress, { passive: true });
+  }
+
+  /* Decorative effects */
+  const matrixBg = document.getElementById("matrixBg");
   if (matrixBg && !prefersReducedMotion) {
-    const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ#*&^%<>/[]{}()=+-|;:!?@~';
+    const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#*&^%<>/[]{}()=+-|;:!?@~";
     const columnCount = 36;
-
-    for (let i = 0; i < columnCount; i++) {
-      const column = document.createElement('div');
-      column.className = 'matrix-column';
-      column.style.left = (i * (100 / columnCount) + (Math.random() * 3.2)) + '%';
-      column.style.animationDuration = (9 + Math.random() * 10) + 's';
-      column.style.animationDelay = (-Math.random() * 12) + 's';
+    for (let i = 0; i < columnCount; i += 1) {
+      const column = document.createElement("div");
+      column.className = "matrix-column";
+      column.style.left = i * (100 / columnCount) + Math.random() * 3.2 + "%";
+      column.style.animationDuration = 9 + Math.random() * 10 + "s";
+      column.style.animationDelay = -Math.random() * 12 + "s";
       column.style.opacity = (0.45 + Math.random() * 0.55).toFixed(2);
-
-      const spans = Array.from({ length: 14 + Math.floor(Math.random() * 16) }, () => {
-        const span = document.createElement('span');
+      Array.from({ length: 14 + Math.floor(Math.random() * 16) }, () => {
+        const span = document.createElement("span");
         span.textContent = chars[Math.floor(Math.random() * chars.length)];
         return span;
-      });
-
-      spans.forEach((span) => column.appendChild(span));
+      }).forEach((span) => column.appendChild(span));
       matrixBg.appendChild(column);
     }
   }
 
-  /* ---------------------------------------------------------
-     HERO PARALLAX GLOW — the ambient blob drifts slightly
-     slower than scroll for a subtle depth cue
-  --------------------------------------------------------- */
-  const heroGlow = document.getElementById('heroGlow');
+  const heroGlow = document.getElementById("heroGlow");
   if (heroGlow && !prefersReducedMotion) {
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y < window.innerHeight) {
-        heroGlow.style.transform = `translateY(${y * 0.15}px)`;
-      }
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (window.scrollY < window.innerHeight)
+          heroGlow.style.transform = `translateY(${window.scrollY * 0.15}px)`;
+      },
+      { passive: true }
+    );
   }
 
-  /* ---------------------------------------------------------
-     CURSOR GLOW (desktop only, decorative)
-  --------------------------------------------------------- */
-  const glow = document.querySelector('.cursor-glow');
-  if (glow && window.matchMedia('(hover: hover)').matches) {
-    window.addEventListener('mousemove', (e) => {
-      glow.style.setProperty('--x', e.clientX + 'px');
-      glow.style.setProperty('--y', e.clientY + 'px');
-    }, { passive: true });
+  const cursorGlow = document.querySelector(".cursor-glow");
+  if (cursorGlow && window.matchMedia("(hover: hover)").matches) {
+    window.addEventListener(
+      "mousemove",
+      (event) => {
+        cursorGlow.style.setProperty("--x", event.clientX + "px");
+        cursorGlow.style.setProperty("--y", event.clientY + "px");
+      },
+      { passive: true }
+    );
   }
 
-  /* ---------------------------------------------------------
-     SPOTLIGHT CARDS — mouse-follow glow, delegated to one
-     listener rather than one per card for performance
-  --------------------------------------------------------- */
-  const hoverCapable = window.matchMedia('(hover: hover)').matches;
+  const hoverCapable = window.matchMedia("(hover: hover)").matches;
   if (hoverCapable && !prefersReducedMotion) {
-    document.addEventListener('pointermove', (e) => {
-      const card = e.target.closest('.spotlight-card');
-      if (!card) return;
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-    }, { passive: true });
-  }
+    document.addEventListener(
+      "pointermove",
+      (event) => {
+        const card = event.target.closest(".spotlight-card");
+        if (!card) return;
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", event.clientX - rect.left + "px");
+        card.style.setProperty("--my", event.clientY - rect.top + "px");
+      },
+      { passive: true }
+    );
 
-  /* ---------------------------------------------------------
-     MAGNETIC BUTTONS — primary/ghost buttons pull gently
-     toward the cursor within their bounds
-  --------------------------------------------------------- */
-  if (hoverCapable && !prefersReducedMotion) {
-    document.querySelectorAll('.btn').forEach((btn) => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const relX = e.clientX - rect.left - rect.width / 2;
-        const relY = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${relX * 0.18}px, ${relY * 0.35}px)`;
+    document.querySelectorAll(".btn").forEach((button) => {
+      button.addEventListener("mousemove", (event) => {
+        const rect = button.getBoundingClientRect();
+        button.style.transform = `translate(${
+          (event.clientX - rect.left - rect.width / 2) * 0.18
+        }px, ${(event.clientY - rect.top - rect.height / 2) * 0.35}px)`;
       });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
+      button.addEventListener("mouseleave", () => {
+        button.style.transform = "";
       });
     });
   }
 
-  /* ---------------------------------------------------------
-     BUTTON RIPPLE — lightweight click feedback
-  --------------------------------------------------------- */
-  document.querySelectorAll('.btn').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
+  document.querySelectorAll(".btn").forEach((button) => {
+    button.addEventListener("click", (event) => {
       if (prefersReducedMotion) return;
-      const rect = btn.getBoundingClientRect();
-      const ripple = document.createElement('span');
-      ripple.className = 'btn__ripple';
-      ripple.style.left = (e.clientX - rect.left) + 'px';
-      ripple.style.top = (e.clientY - rect.top) + 'px';
-      btn.appendChild(ripple);
-      ripple.addEventListener('animationend', () => ripple.remove());
+      const rect = button.getBoundingClientRect();
+      const ripple = document.createElement("span");
+      ripple.className = "btn__ripple";
+      ripple.style.left = event.clientX - rect.left + "px";
+      ripple.style.top = event.clientY - rect.top + "px";
+      button.appendChild(ripple);
+      ripple.addEventListener("animationend", () => ripple.remove());
     });
   });
 
-  /* ---------------------------------------------------------
-     BACK TO TOP
-  --------------------------------------------------------- */
-  const backToTop = document.getElementById('backToTop');
+  const backToTop = document.getElementById("backToTop");
   if (backToTop) {
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
     });
   }
 
-  /* ---------------------------------------------------------
-     SCROLL REVEAL
-  --------------------------------------------------------- */
-  const revealEls = document.querySelectorAll('.reveal, .about__stats');
-  if (prefersReducedMotion) {
-    revealEls.forEach((el) => el.classList.add('is-visible'));
-  } else {
+  /* Reveals and counters */
+  const revealEls = Array.from(
+    document.querySelectorAll(".reveal, .about__stats")
+  );
+  if (prefersReducedMotion || !supportsObserver) {
+    revealEls.forEach((element) => element.classList.add("is-visible"));
+  } else if (revealEls.length) {
     const revealObserver = new IntersectionObserver(
-      (entries, obs) => {
+      (entries, observer) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            obs.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
     );
-    revealEls.forEach((el) => revealObserver.observe(el));
+    revealEls.forEach((element) => revealObserver.observe(element));
   }
 
-  /* ---------------------------------------------------------
-     HERO TYPEWRITER (role rotation)
-  --------------------------------------------------------- */
-  const typewriterEl = document.getElementById('typewriter');
-  const roles = [
-    'Full-Stack Developer',
-    'React · Next.js · Node.js',
-    'Building AI-powered products',
-    '500+ DSA problems solved'
-  ];
-
-  function startTypewriter() {
-    if (!typewriterEl) return;
-    if (prefersReducedMotion) {
-      typewriterEl.textContent = roles[0];
-      return;
+  const statNums = Array.from(document.querySelectorAll(".stat-card__num"));
+  if (statNums.length) {
+    const updateStat = (element) => {
+      const target = Number.parseFloat(element.getAttribute("data-count"));
+      const isDecimal = element.getAttribute("data-decimal") === "true";
+      const suffix = element.getAttribute("data-suffix") || "";
+      if (prefersReducedMotion || !Number.isFinite(target)) {
+        element.textContent =
+          (isDecimal ? target.toFixed(1) : String(target)) + suffix;
+        return;
+      }
+      const start = performance.now();
+      const frame = (now) => {
+        const progress = Math.min((now - start) / 1400, 1);
+        const value = target * (1 - Math.pow(1 - progress, 3));
+        element.textContent =
+          (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
+        if (progress < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+    if (!supportsObserver) statNums.forEach(updateStat);
+    else {
+      const countObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            updateStat(entry.target);
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.5 }
+      );
+      statNums.forEach((element) => countObserver.observe(element));
     }
-    let roleIndex = 0;
-    let charIndex = 0;
-    let deleting = false;
+  }
 
-    function tick() {
-      const current = roles[roleIndex];
-      if (!deleting) {
-        charIndex++;
+  /* Home hero */
+  const typewriterEl = document.getElementById("typewriter");
+  const roles = [
+    "Full-Stack Developer",
+    "React · Next.js · Node.js",
+    "Building AI-powered products",
+    "500+ DSA problems solved",
+  ];
+  if (typewriterEl) {
+    if (prefersReducedMotion) typewriterEl.textContent = roles[0];
+    else {
+      let roleIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+      const tick = () => {
+        const current = roles[roleIndex];
+        charIndex += deleting ? -1 : 1;
         typewriterEl.textContent = current.slice(0, charIndex);
-        if (charIndex === current.length) {
+        if (!deleting && charIndex === current.length) {
           deleting = true;
-          return setTimeout(tick, 1800);
+          window.setTimeout(tick, 1800);
+          return;
         }
-      } else {
-        charIndex--;
-        typewriterEl.textContent = current.slice(0, charIndex);
-        if (charIndex === 0) {
+        if (deleting && charIndex === 0) {
           deleting = false;
           roleIndex = (roleIndex + 1) % roles.length;
         }
-      }
-      const speed = deleting ? 35 : 65;
-      setTimeout(tick, speed);
+        window.setTimeout(tick, deleting ? 35 : 65);
+      };
+      tick();
     }
-    tick();
   }
-  startTypewriter();
 
-  /* ---------------------------------------------------------
-     HERO CODE EDITOR — typed-in code block
-  --------------------------------------------------------- */
-  const editorCode = document.querySelector('#editorCode code');
-
+  const editorCode = document.querySelector("#editorCode code");
   const codeLines = [
-    { text: '// always shipping something', cls: 'tok-com' },
-    { text: 'const developer = {', cls: null },
-    { text: '  name: ', cls: null, tail: [['"Pushap Raina"', 'tok-str']] },
-    { text: '  role: ', cls: null, tail: [['"Full-Stack Developer"', 'tok-str']] },
-    { text: '  based: ', cls: null, tail: [['"Mumbai, India"', 'tok-str']] },
-    { text: '  stack: [', cls: null, tail: [['"React"', 'tok-str'], [', ', null], ['"Next.js"', 'tok-str'], [', ', null], ['"Node.js"', 'tok-str'], [', ', null], ['"C++"', 'tok-str'], ['],', null]] },
-    { text: '  dsaSolved: ', cls: null, tail: [['500', 'tok-prop']] },
-    { text: '  ', cls: null, tail: [['availableForWork', 'tok-fn'], [': ', null], ['true', 'tok-prop'], [',', null]] },
-    { text: '};', cls: null },
-    { text: '', cls: null },
-    { text: 'function', cls: 'tok-key', tail: [[' shipIt', 'tok-fn'], ['(idea) {', null]] },
-    { text: '  return idea', cls: null, tail: [['.build()', 'tok-prop'], ['.ship();', 'tok-prop']] },
-    { text: '}', cls: null },
-  ];
-
-  function renderLineHTML(line) {
-    let html = '';
-    if (line.cls) {
-      html += `<span class="${line.cls}">${escapeHtml(line.text)}</span>`;
-    } else {
-      html += escapeHtml(line.text);
-    }
-    if (line.tail) {
-      line.tail.forEach(([text, cls]) => {
-        html += cls ? `<span class="${cls}">${escapeHtml(text)}</span>` : escapeHtml(text);
-      });
-    }
-    return html;
-  }
-
-  function escapeHtml(str) {
-    return str.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
-  }
-
-  function typeEditorCode() {
-    if (!editorCode) return;
-    if (prefersReducedMotion) {
-      editorCode.innerHTML = codeLines.map(renderLineHTML).join('\n');
-      return;
-    }
-
-    let lineIdx = 0;
-
-    function typeNextLine() {
-      if (lineIdx >= codeLines.length) return;
-      const line = codeLines[lineIdx];
-      const full = line.text;
-      let charIdx = 0;
-
-      // Render already-completed lines fully, current line char-by-char
-      function renderPartial() {
-        const completed = codeLines.slice(0, lineIdx).map(renderLineHTML);
-        const partial = line.cls
-          ? `<span class="${line.cls}">${escapeHtml(full.slice(0, charIdx))}</span>`
-          : escapeHtml(full.slice(0, charIdx));
-        editorCode.innerHTML = completed.concat(partial).join('\n');
-      }
-
-      function step() {
-        charIdx++;
-        renderPartial();
-        if (charIdx < full.length) {
-          setTimeout(step, 14);
-        } else {
-          // append tail (colored tokens) instantly once base text is typed
-          const completed = codeLines.slice(0, lineIdx).map(renderLineHTML);
-          editorCode.innerHTML = completed.concat(renderLineHTML(line)).join('\n');
-          lineIdx++;
-          setTimeout(typeNextLine, 90);
-        }
-      }
-
-      if (full.length === 0) {
-        lineIdx++;
-        setTimeout(typeNextLine, 60);
-      } else {
-        step();
-      }
-    }
-
-    typeNextLine();
-  }
-
-  // Trigger editor typing once it scrolls into view (or immediately on load for hero)
-  typeEditorCode();
-
-  /* ---------------------------------------------------------
-     ANIMATED STAT COUNTERS
-  --------------------------------------------------------- */
-  const statNums = document.querySelectorAll('.stat-card__num');
-  const countObserver = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        const target = parseFloat(el.getAttribute('data-count'));
-        const isDecimal = el.getAttribute('data-decimal') === 'true';
-        const suffix = el.getAttribute('data-suffix') || '';
-        if (prefersReducedMotion) {
-          el.textContent = (isDecimal ? target.toFixed(1) : String(target)) + suffix;
-          obs.unobserve(el);
-          return;
-        }
-        const duration = 1400;
-        const start = performance.now();
-        function frame(now) {
-          const progress = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const value = target * eased;
-          el.textContent = (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
-          if (progress < 1) requestAnimationFrame(frame);
-        }
-        requestAnimationFrame(frame);
-        obs.unobserve(el);
-      });
+    { text: "// always shipping something", cls: "tok-com" },
+    { text: "const developer = {" },
+    { text: "  name: ", tail: [['"Pushap Raina"', "tok-str"]] },
+    { text: "  role: ", tail: [['"Full-Stack Developer"', "tok-str"]] },
+    { text: "  based: ", tail: [['"Mumbai, India"', "tok-str"]] },
+    {
+      text: "  stack: [",
+      tail: [
+        ['"React"', "tok-str"],
+        [", "],
+        ['"Next.js"', "tok-str"],
+        [", "],
+        ['"Node.js"', "tok-str"],
+        [", "],
+        ['"C++"', "tok-str"],
+        ["],"],
+      ],
     },
-    { threshold: 0.5 }
-  );
-  statNums.forEach((el) => countObserver.observe(el));
-
-  /* ---------------------------------------------------------
-     CONTACT FORM — validation + EmailJS send
-  --------------------------------------------------------- */
-  const form = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
-
-  function setError(fieldId, message) {
-    const field = document.getElementById(fieldId);
-    const errorEl = document.getElementById(fieldId + 'Error');
-    const wrapper = field.closest('.field');
-    if (message) {
-      wrapper.classList.add('has-error');
-      errorEl.textContent = message;
-    } else {
-      wrapper.classList.remove('has-error');
-      errorEl.textContent = '';
+    { text: "  dsaSolved: ", tail: [["500", "tok-prop"]] },
+    {
+      text: "  ",
+      tail: [
+        ["availableForWork", "tok-fn"],
+        [": "],
+        ["true", "tok-prop"],
+        [","],
+      ],
+    },
+    { text: "};" },
+    { text: "" },
+    {
+      text: "function",
+      cls: "tok-key",
+      tail: [[" shipIt", "tok-fn"], ["(idea) {"]],
+    },
+    {
+      text: "  return idea",
+      tail: [
+        [".build()", "tok-prop"],
+        [".ship();", "tok-prop"],
+      ],
+    },
+    { text: "}" },
+  ];
+  const escapeHtml = (value) =>
+    value.replace(
+      /[&<>]/g,
+      (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[character])
+    );
+  const renderLineHtml = (line) => {
+    let html = line.cls
+      ? `<span class="${line.cls}">${escapeHtml(line.text)}</span>`
+      : escapeHtml(line.text);
+    (line.tail || []).forEach(([text, cls]) => {
+      html += cls
+        ? `<span class="${cls}">${escapeHtml(text)}</span>`
+        : escapeHtml(text);
+    });
+    return html;
+  };
+  if (editorCode) {
+    if (prefersReducedMotion)
+      editorCode.innerHTML = codeLines.map(renderLineHtml).join("\n");
+    else {
+      let lineIndex = 0;
+      const typeNextLine = () => {
+        if (lineIndex >= codeLines.length) return;
+        const line = codeLines[lineIndex];
+        const fullText = line.text;
+        let characterIndex = 0;
+        const renderPartial = () => {
+          const completed = codeLines.slice(0, lineIndex).map(renderLineHtml);
+          const partial = line.cls
+            ? `<span class="${line.cls}">${escapeHtml(
+                fullText.slice(0, characterIndex)
+              )}</span>`
+            : escapeHtml(fullText.slice(0, characterIndex));
+          editorCode.innerHTML = completed.concat(partial).join("\n");
+        };
+        const step = () => {
+          characterIndex += 1;
+          renderPartial();
+          if (characterIndex < fullText.length) window.setTimeout(step, 14);
+          else {
+            editorCode.innerHTML = codeLines
+              .slice(0, lineIndex)
+              .map(renderLineHtml)
+              .concat(renderLineHtml(line))
+              .join("\n");
+            lineIndex += 1;
+            window.setTimeout(typeNextLine, 90);
+          }
+        };
+        if (!fullText.length) {
+          lineIndex += 1;
+          window.setTimeout(typeNextLine, 60);
+        } else step();
+      };
+      typeNextLine();
     }
   }
 
-  function isValidEmail(value) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  }
-
-  // ---- EmailJS config — fill in your own values from the dashboard ----
-  const EMAILJS_PUBLIC_KEY = 'ElhlwQ4hpsqVwntVc';
-  const EMAILJS_SERVICE_ID = 'service_vy2wpzq';
-  const EMAILJS_TEMPLATE_ID = 'template_2qmin89';
-
-  if (window.emailjs) {
-    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-  }
-
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-
+  /* Contact form */
+  const form = document.getElementById("contactForm");
+  const formStatus = document.getElementById("formStatus");
+  const fieldIds = ["name", "email", "subject", "message"];
+  const fields = Object.fromEntries(
+    fieldIds.map((id) => [id, document.getElementById(id)])
+  );
+  const setError = (fieldId, message) => {
+    const field = fields[fieldId];
+    const error = document.getElementById(fieldId + "Error");
+    const wrapper = field && field.closest(".field");
+    if (!field || !error || !wrapper) return;
+    wrapper.classList.toggle("has-error", Boolean(message));
+    error.textContent = message || "";
+  };
+  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  if (form && formStatus && fieldIds.every((id) => fields[id])) {
+    const publicKey = "ElhlwQ4hpsqVwntVc";
+    const serviceId = "service_vy2wpzq";
+    const templateId = "template_2qmin89";
+    if (window.emailjs) window.emailjs.init({ publicKey });
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const values = Object.fromEntries(
+        fieldIds.map((id) => [id, fields[id].value.trim()])
+      );
       let valid = true;
-
-      if (!name) { setError('name', 'Please enter your name.'); valid = false; }
-      else setError('name', '');
-
-      if (!email) { setError('email', 'Please enter your email.'); valid = false; }
-      else if (!isValidEmail(email)) { setError('email', "That email doesn't look right."); valid = false; }
-      else setError('email', '');
-
-      if (!subject) { setError('subject', 'Please add a subject.'); valid = false; }
-      else setError('subject', '');
-
-      if (!message) { setError('message', 'Please write a message.'); valid = false; }
-      else setError('message', '');
-
+      if (!values.name) {
+        setError("name", "Please enter your name.");
+        valid = false;
+      } else setError("name", "");
+      if (!values.email) {
+        setError("email", "Please enter your email.");
+        valid = false;
+      } else if (!isValidEmail(values.email)) {
+        setError("email", "That email doesn't look right.");
+        valid = false;
+      } else setError("email", "");
+      if (!values.subject) {
+        setError("subject", "Please add a subject.");
+        valid = false;
+      } else setError("subject", "");
+      if (!values.message) {
+        setError("message", "Please write a message.");
+        valid = false;
+      } else setError("message", "");
       if (!valid) {
-        formStatus.textContent = '';
+        formStatus.textContent = "";
         return;
       }
-
-      const submitBtn = form.querySelector('button[type="submit"]');
-      submitBtn.disabled = true;
-      formStatus.style.color = '';
-      formStatus.textContent = 'Sending...';
-
-      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-        from_name: name,
-        from_email: email,
-        subject: `[Portfolio] ${subject}`,
-        message: message
-      }).then(() => {
-        formStatus.textContent = "Message sent — thanks! I'll get back to you soon.";
-        form.reset();
-        ['name', 'email', 'subject', 'message'].forEach((id) => setError(id, ''));
-        submitBtn.disabled = false;
-      }).catch((error) => {
-        formStatus.style.color = '#e8636b';
-        formStatus.textContent = 'Something went wrong — please email me directly at rainapushap96@gmail.com';
-        submitBtn.disabled = false;
-        console.log(error);
-        console.log(error.text);
-        console.log(error.status);
-      });
+      if (!window.emailjs) {
+        formStatus.style.color = "#e8636b";
+        formStatus.textContent =
+          "The contact service is unavailable. Please email me directly at rainapushap96@gmail.com.";
+        return;
+      }
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+      formStatus.style.color = "";
+      formStatus.textContent = "Sending...";
+      window.emailjs
+        .send(serviceId, templateId, {
+          from_name: values.name,
+          from_email: values.email,
+          subject: `[Portfolio] ${values.subject}`,
+          message: values.message,
+        })
+        .then(() => {
+          formStatus.textContent =
+            "Message sent — thanks! I'll get back to you soon.";
+          form.reset();
+          fieldIds.forEach((id) => setError(id, ""));
+          if (submitButton) submitButton.disabled = false;
+        })
+        .catch((error) => {
+          formStatus.style.color = "#e8636b";
+          formStatus.textContent =
+            "Something went wrong — please email me directly at rainapushap96@gmail.com";
+          if (submitButton) submitButton.disabled = false;
+          console.log(error);
+        });
     });
-
-    // Clear individual field errors as the person types
-    ['name', 'email', 'subject', 'message'].forEach((id) => {
-      document.getElementById(id).addEventListener('input', () => setError(id, ''));
-    });
+    fieldIds.forEach((id) =>
+      fields[id].addEventListener("input", () => setError(id, ""))
+    );
   }
 
-  /* ---------------------------------------------------------
-     COPY EMAIL BUTTON
-  --------------------------------------------------------- */
-  const copyEmailBtn = document.getElementById('copyEmailBtn');
-  if (copyEmailBtn) {
-    copyEmailBtn.addEventListener('click', async () => {
-      const email = copyEmailBtn.getAttribute('data-copy');
-      const label = copyEmailBtn.querySelector('.copy-btn__label');
+  const copyEmailButton = document.getElementById("copyEmailBtn");
+  if (copyEmailButton) {
+    copyEmailButton.addEventListener("click", async () => {
+      const email = copyEmailButton.getAttribute("data-copy");
+      const label = copyEmailButton.querySelector(".copy-btn__label");
       try {
         await navigator.clipboard.writeText(email);
-      } catch (err) {
-        // Fallback for browsers without Clipboard API access
-        const tmp = document.createElement('textarea');
-        tmp.value = email;
-        tmp.style.position = 'fixed';
-        tmp.style.opacity = '0';
-        document.body.appendChild(tmp);
-        tmp.select();
-        document.execCommand('copy');
-        document.body.removeChild(tmp);
+      } catch (error) {
+        const temporaryInput = document.createElement("textarea");
+        temporaryInput.value = email;
+        temporaryInput.style.position = "fixed";
+        temporaryInput.style.opacity = "0";
+        document.body.appendChild(temporaryInput);
+        temporaryInput.select();
+        document.execCommand("copy");
+        temporaryInput.remove();
       }
-      copyEmailBtn.classList.add('is-copied');
-      copyEmailBtn.setAttribute('aria-label', 'Email copied to clipboard');
-      const original = label.textContent;
-      label.textContent = 'Copied!';
-      setTimeout(() => {
-        copyEmailBtn.classList.remove('is-copied');
-        copyEmailBtn.setAttribute('aria-label', 'Copy email address');
-        label.textContent = original;
+      copyEmailButton.classList.add("is-copied");
+      copyEmailButton.setAttribute("aria-label", "Email copied to clipboard");
+      const originalLabel = label ? label.textContent : "";
+      if (label) label.textContent = "Copied!";
+      window.setTimeout(() => {
+        copyEmailButton.classList.remove("is-copied");
+        copyEmailButton.setAttribute("aria-label", "Copy email address");
+        if (label) label.textContent = originalLabel;
       }, 2000);
     });
   }
 
-  /* ---------------------------------------------------------
-     INTERACTIVE TERMINAL
-  --------------------------------------------------------- */
-  const termFab = document.getElementById('termFab');
-  const termOverlay = document.getElementById('termOverlay');
-  const termClose = document.getElementById('termClose');
-  const termBody = document.getElementById('termBody');
-  const termInput = document.getElementById('termInput');
-
-  const history = [];
-  let historyPos = -1;
-
-  function openTerminal() {
-    termOverlay.classList.add('is-open');
-    termOverlay.setAttribute('aria-hidden', 'false');
-    setTimeout(() => termInput.focus(), 50);
-    document.body.style.overflow = 'hidden';
-  }
-  function closeTerminal() {
-    termOverlay.classList.remove('is-open');
-    termOverlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    termFab.focus();
-  }
-
-  if (termFab) termFab.addEventListener('click', openTerminal);
-  if (termClose) termClose.addEventListener('click', closeTerminal);
-  if (termOverlay) {
-    termOverlay.addEventListener('click', (e) => {
-      if (e.target === termOverlay) closeTerminal();
+  /* Home terminal */
+  const termFab = document.getElementById("termFab");
+  const termOverlay = document.getElementById("termOverlay");
+  const termClose = document.getElementById("termClose");
+  const termBody = document.getElementById("termBody");
+  const termInput = document.getElementById("termInput");
+  if (termFab && termOverlay && termClose && termBody && termInput) {
+    const history = [];
+    let historyPosition = -1;
+    const openTerminal = () => {
+      termOverlay.classList.add("is-open");
+      termOverlay.setAttribute("aria-hidden", "false");
+      window.setTimeout(() => termInput.focus(), 50);
+      document.body.style.overflow = "hidden";
+    };
+    const closeTerminal = () => {
+      termOverlay.classList.remove("is-open");
+      termOverlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      termFab.focus();
+    };
+    const printLine = (html, isCommand) => {
+      const line = document.createElement("div");
+      line.className = "term-line" + (isCommand ? " term-line--cmd" : "");
+      line.innerHTML = html;
+      termBody.appendChild(line);
+      termBody.scrollTop = termBody.scrollHeight;
+    };
+    const navigate = (path) => {
+      closeTerminal();
+      window.location.href = path;
+    };
+    termFab.addEventListener("click", openTerminal);
+    termClose.addEventListener("click", closeTerminal);
+    termOverlay.addEventListener("click", (event) => {
+      if (event.target === termOverlay) closeTerminal();
     });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    const isOpen = termOverlay.classList.contains('is-open');
-    if (!isOpen && e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-      e.preventDefault();
-      openTerminal();
-    } else if (isOpen && e.key === 'Escape') {
-      closeTerminal();
-    }
-  });
-
-  function printLine(html, isCmd) {
-    const line = document.createElement('div');
-    line.className = 'term-line' + (isCmd ? ' term-line--cmd' : '');
-    line.innerHTML = html;
-    termBody.appendChild(line);
-    termBody.scrollTop = termBody.scrollHeight;
-  }
-
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (el) {
-      closeTerminal();
-      setTimeout(() => el.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' }), 200);
-    }
-  }
-
-  const commands = {
-    help: () => {
-      printLine([
-        'Available commands:',
-        '  <span class="tok-str">about</span>         — who I am',
-        '  <span class="tok-str">experience</span>    — where I\'ve worked',
-        '  <span class="tok-str">projects</span>       — things I\'ve built',
-        '  <span class="tok-str">skills</span>         — tech I use',
-        '  <span class="tok-str">education</span>      — where I studied',
-        '  <span class="tok-str">contact</span>        — get in touch',
-        '  <span class="tok-str">social</span>         — GitHub / LinkedIn / LeetCode / email',
-        '  <span class="tok-str">resume</span>         — download my CV',
-        '  <span class="tok-str">whoami</span>         — one-line intro',
-        '  <span class="tok-str">clear</span>          — clear this terminal',
-        '  <span class="tok-str">sudo make coffee</span> — try it'
-      ].join('\n'));
-    },
-    about: () => scrollToSection('about'),
-    experience: () => scrollToSection('experience'),
-    projects: () => scrollToSection('projects'),
-    skills: () => scrollToSection('skills'),
-    education: () => scrollToSection('education'),
-    contact: () => scrollToSection('contact'),
-    social: () => {
-      printLine('GitHub: <a href="https://github.com/pushapraina123" target="_blank" rel="noopener">github.com/pushapraina123</a>\nLinkedIn: <a href="https://linkedin.com/in/pushap-raina" target="_blank" rel="noopener">linkedin.com/in/pushap-raina</a>\nLeetCode: <a href="https://leetcode.com/pushapraina123" target="_blank" rel="noopener">leetcode.com/pushapraina123</a>\nEmail: <a href="mailto:rainapushap96@gmail.com">rainapushap96@gmail.com</a>');
-    },
-    resume: () => {
-      const resumeLink = document.querySelector('.hero__actions a[download]');
-      if (!resumeLink) {
-        printLine('Resume link not found — grab it from the hero section above.');
+    document.addEventListener("keydown", (event) => {
+      const isOpen = termOverlay.classList.contains("is-open");
+      if (
+        !isOpen &&
+        event.key === "/" &&
+        document.activeElement.tagName !== "INPUT" &&
+        document.activeElement.tagName !== "TEXTAREA"
+      ) {
+        event.preventDefault();
+        openTerminal();
+      } else if (isOpen && event.key === "Escape") closeTerminal();
+    });
+    const commands = {
+      help: () =>
+        printLine(
+          [
+            "Available commands:",
+            '  <span class="tok-str">home</span>          — landing page',
+            '  <span class="tok-str">about</span>         — who I am',
+            '  <span class="tok-str">experience</span>    — where I\'ve worked',
+            '  <span class="tok-str">projects</span>      — things I\'ve built',
+            '  <span class="tok-str">skills</span>        — tech I use',
+            '  <span class="tok-str">education</span>     — where I studied',
+            '  <span class="tok-str">beyond</span>        — activities beyond code',
+            '  <span class="tok-str">contact</span>       — get in touch',
+            '  <span class="tok-str">social</span>        — GitHub / LinkedIn / LeetCode / email',
+            '  <span class="tok-str">resume</span>        — download my CV',
+            '  <span class="tok-str">whoami</span>        — one-line intro',
+            '  <span class="tok-str">clear</span>         — clear this terminal',
+          ].join("\n")
+        ),
+      home: () => navigate("index.html"),
+      about: () => navigate("about.html"),
+      experience: () => navigate("experience.html"),
+      projects: () => navigate("projects.html"),
+      skills: () => navigate("skills.html"),
+      education: () => navigate("education.html"),
+      beyond: () => navigate("extracurricular.html"),
+      extracurricular: () => navigate("extracurricular.html"),
+      contact: () => navigate("contact.html"),
+      social: () =>
+        printLine(
+          'GitHub: <a href="https://github.com/pushapraina123" target="_blank" rel="noopener">github.com/pushapraina123</a>\nLinkedIn: <a href="https://linkedin.com/in/pushap-raina" target="_blank" rel="noopener">linkedin.com/in/pushap-raina</a>\nLeetCode: <a href="https://leetcode.com/pushapraina123" target="_blank" rel="noopener">leetcode.com/pushapraina123</a>\nEmail: <a href="mailto:rainapushap96@gmail.com">rainapushap96@gmail.com</a>'
+        ),
+      resume: () => {
+        const resumeLink = document.querySelector(
+          'a[download="PushapRaina_SDE.pdf"]'
+        );
+        if (resumeLink) resumeLink.click();
+        else
+          printLine(
+            "Resume link not found — please use the download button on the Home page."
+          );
+      },
+      whoami: () =>
+        printLine(
+          "Pushap Raina — final-year CS undergrad at SPIT Mumbai, full-stack developer, 500+ DSA problems deep."
+        ),
+      clear: () => {
+        termBody.innerHTML = "";
+      },
+    };
+    const runCommand = (raw) => {
+      const command = raw.trim();
+      if (!command) return;
+      printLine(escapeHtml(command), true);
+      history.push(command);
+      historyPosition = history.length;
+      const lower = command.toLowerCase();
+      if (lower === "sudo make coffee") {
+        printLine("brewing... permission denied: I only run on tea, actually.");
         return;
       }
-      printLine('Downloading resume...');
-      resumeLink.click();
-    },
-    whoami: () => {
-      printLine('Pushap Raina — final-year CS undergrad at SPIT Mumbai, full-stack developer, 500+ DSA problems deep.');
-    },
-    clear: () => {
-      termBody.innerHTML = '';
-    },
-  };
-
-  function runCommand(raw) {
-    const cmd = raw.trim();
-    if (!cmd) return;
-
-    printLine(escapeHtml(cmd), true);
-    history.push(cmd);
-    historyPos = history.length;
-
-    const lower = cmd.toLowerCase();
-
-    if (lower === 'sudo make coffee') {
-      printLine('brewing... permission denied: I only run on tea, actually.');
-      return;
-    }
-    if (lower.startsWith('sudo')) {
-      printLine("Nice try — this terminal doesn't do root.");
-      return;
-    }
-    if (lower === 'exit' || lower === 'quit') {
-      closeTerminal();
-      return;
-    }
-
-    const fn = commands[lower];
-    if (fn) {
-      fn();
-    } else {
-      printLine('command not found: ' + escapeHtml(cmd) + ' — type <span class="tok-str">help</span> to see what\'s available.');
-    }
-  }
-
-  if (termInput) {
-    termInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
+      if (lower.startsWith("sudo")) {
+        printLine("Nice try — this terminal doesn't do root.");
+        return;
+      }
+      if (lower === "exit" || lower === "quit") {
+        closeTerminal();
+        return;
+      }
+      if (commands[lower]) commands[lower]();
+      else
+        printLine(
+          "command not found: " +
+            escapeHtml(command) +
+            ' — type <span class="tok-str">help</span> to see what\'s available.'
+        );
+    };
+    termInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
         runCommand(termInput.value);
-        termInput.value = '';
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (historyPos > 0) {
-          historyPos--;
-          termInput.value = history[historyPos] || '';
+        termInput.value = "";
+      } else if (event.key === "ArrowUp") {
+        event.preventDefault();
+        if (historyPosition > 0) {
+          historyPosition -= 1;
+          termInput.value = history[historyPosition] || "";
         }
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (historyPos < history.length - 1) {
-          historyPos++;
-          termInput.value = history[historyPos] || '';
+      } else if (event.key === "ArrowDown") {
+        event.preventDefault();
+        if (historyPosition < history.length - 1) {
+          historyPosition += 1;
+          termInput.value = history[historyPosition] || "";
         } else {
-          historyPos = history.length;
-          termInput.value = '';
+          historyPosition = history.length;
+          termInput.value = "";
         }
       }
     });
   }
 
+  /* Lazy-load partial sections */
+  (function () {
+    const lazySections = Array.from(
+      document.querySelectorAll("section.lazy-section[data-src]")
+    );
+    if (!lazySections.length) return;
+    const loadHtml = async (section) => {
+      const src = section.getAttribute("data-src");
+      if (!src) return;
+      try {
+        const res = await fetch(src);
+        if (!res.ok) throw new Error(res.statusText);
+        const html = await res.text();
+        const temp = document.createElement("div");
+        temp.innerHTML = html;
+        while (temp.firstChild) section.appendChild(temp.firstChild);
+        section.classList.remove("lazy-section");
+        section.removeAttribute("aria-hidden");
+        // initialize reveals inside the newly inserted content
+        const reveals = section.querySelectorAll(".reveal");
+        if (prefersReducedMotion || !("IntersectionObserver" in window))
+          reveals.forEach((el) => el.classList.add("is-visible"));
+        else {
+          const obs = new IntersectionObserver(
+            (entries, o) => {
+              entries.forEach((e) => {
+                if (e.isIntersecting) {
+                  e.target.classList.add("is-visible");
+                  o.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+          );
+          reveals.forEach((el) => obs.observe(el));
+        }
+        // initialize stat-number counters
+        const nums = section.querySelectorAll(".stat-card__num");
+        nums.forEach((el) => {
+          const target = Number.parseFloat(el.getAttribute("data-count"));
+          const isDecimal = el.getAttribute("data-decimal") === "true";
+          const suffix = el.getAttribute("data-suffix") || "";
+          if (prefersReducedMotion || !Number.isFinite(target)) {
+            el.textContent =
+              (isDecimal ? target.toFixed(1) : String(target)) + suffix;
+            return;
+          }
+          const start = performance.now();
+          const frame = (now) => {
+            const progress = Math.min((now - start) / 1400, 1);
+            const value = target * (1 - Math.pow(1 - progress, 3));
+            el.textContent =
+              (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
+            if (progress < 1) requestAnimationFrame(frame);
+          };
+          requestAnimationFrame(frame);
+        });
+      } catch (err) {
+        console.warn("Failed to load partial", src, err);
+      }
+    };
+    if ("IntersectionObserver" in window) {
+      const partialObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            observer.unobserve(entry.target);
+            loadHtml(entry.target);
+          });
+        },
+        { rootMargin: "300px 0px" }
+      );
+      lazySections.forEach((s) => partialObserver.observe(s));
+    } else {
+      lazySections.forEach((s) => loadHtml(s));
+    }
+  })();
 })();
