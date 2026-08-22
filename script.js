@@ -32,6 +32,38 @@
     });
   }
 
+  /* Intercept same-origin link clicks and show custom 404 page when target is missing */
+  (function () {
+    if (!window.fetch || !window.URL) return;
+    document.addEventListener("click", (event) => {
+      const anchor = event.target.closest("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:") || anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+      let dest;
+      try {
+        dest = new URL(href, window.location.href);
+      } catch (e) {
+        return;
+      }
+      if (dest.origin !== window.location.origin) return;
+      const pathToCheck = dest.pathname + dest.search;
+      if (pathToCheck === window.location.pathname + window.location.search) return;
+      event.preventDefault();
+      fetch(pathToCheck, { method: "HEAD" })
+        .then((res) => {
+          if (res.status === 404) {
+            window.location.href = "/404.html";
+          } else {
+            window.location.href = dest.href;
+          }
+        })
+        .catch(() => {
+          window.location.href = dest.href;
+        });
+    });
+  })();
+
   const currentPage = document.body.dataset.page;
   if (currentPage) {
     navLinks.forEach((link) => {
