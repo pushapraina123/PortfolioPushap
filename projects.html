@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — Pushap Raina</title>
+    <meta
+      name="description"
+      content="Featured software projects by Pushap Raina — InfinityPlay, ResuFit, and ShareKare built with Next.js, React, Node.js, MongoDB, and Django."
+    />
+    <meta name="theme-color" content="#0a0c10" />
+    <link rel="canonical" href="https://pushap.dev/projects.html" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230a0c10'/%3E%3Ctext x='12' y='16.5' font-family='monospace' font-size='11' font-weight='700' fill='%23e8b84b' text-anchor='middle'%3E%3C%2F%3E%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Projects — Pushap Raina" />
+    <meta
+      property="og:description"
+      content="Featured software projects by Pushap Raina — InfinityPlay, ResuFit, and ShareKare."
+    />
+    <meta property="og:url" content="https://pushap.dev/projects.html" />
+    <meta property="og:site_name" content="Pushap Raina" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/buttons.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/hero.css" />
+    <link rel="stylesheet" href="css/sections.css" />
+    <link rel="stylesheet" href="css/terminal.css" />
+  </head>
+  <body data-page="projects">
+    <div class="matrix-bg" id="matrixBg" aria-hidden="true"></div>
+
+    <a href="#top" class="skip-link">Skip to content</a>
+
+    <!-- Custom cursor glow -->
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <!-- Progress bar -->
+    <div class="scroll-progress" aria-hidden="true">
+      <div class="scroll-progress__bar" id="scrollBar"></div>
+    </div>
+
+    <!-- ============ NAV ============ -->
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a href="index.html" class="nav__logo" aria-label="Pushap Raina — home">
+          <span class="nav__logo-bracket">&lt;</span>Pushap Raina<span
+            class="nav__logo-bracket"
+            >/&gt;</span
+          >
+        </a>
+
+        <nav class="nav__links" id="navLinks">
+          <a href="about.html" class="nav__link" data-nav>about</a>
+          <a href="experience.html" class="nav__link" data-nav>experience</a>
+          <a href="projects.html" class="nav__link" data-nav>projects</a>
+          <a href="skills.html" class="nav__link" data-nav>skills</a>
+          <a href="education.html" class="nav__link" data-nav>education</a>
+          <a href="contact.html" class="nav__link" data-nav>contact</a>
+        </nav>
+
+
+        <button
+          class="nav__toggle"
+          id="navToggle"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="nav__mobile" id="navMobile">
+        <a href="about.html" class="nav__mobile-link" data-nav>about</a>
+        <a href="experience.html" class="nav__mobile-link" data-nav>experience</a>
+        <a href="projects.html" class="nav__mobile-link" data-nav>projects</a>
+        <a href="skills.html" class="nav__mobile-link" data-nav>skills</a>
+        <a href="education.html" class="nav__mobile-link" data-nav>education</a>
+        <a href="extracurricular.html" class="nav__mobile-link" data-nav
+          >beyond code</a
+        >
+        <a href="contact.html" class="nav__mobile-link" data-nav>contact</a>
+      </div>
+    </header>
+
+    <main id="top" style="padding-top: 5rem;">
+      <!-- ============ PROJECTS ============ -->
+      <section class="section" id="projects">
+        <div class="section__inner">
+          <p class="section__eyebrow reveal">
+            <span class="mono">// 03</span> projects
+          </p>
+          <h2 class="section__title reveal">Things I've built.</h2>
+          <p class="section__sub reveal">
+            A few products I designed and shipped end to end, from schema to UI.
+          </p>
+
+          <div class="projects__grid">
+            <article class="project-card spotlight-card reveal">
+              <div class="project-card__top">
+                <div class="project-card__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M5 12l4-4v3h6a3 3 0 1 0 0-6H9"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M19 12l-4 4v-3H9a3 3 0 1 1 0-6h6"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="project-card__links">
+                  <a
+                    href="https://github.com/pushapraina123"
+                    class="icon-link"
+                    aria-label="GitHub repository"
+                    title="GitHub"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <svg
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.69 5.42-5.25 5.7.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"
+                      />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://infinityplay.vercel.app"
+                    class="icon-link"
+                    aria-label="Live demo"
+                    title="Live demo"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M9 5H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4M15 3h6v6M10 14 21 3"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <h3 class="project-card__title">InfinityPlay</h3>
+              <p class="project-card__tagline">
+                Full-stack platform for playing classic Flash games in modern
+                browsers using the Ruffle emulator.
+              </p>
+
+              <ul class="project-card__points">
+                <li>
+                  Integrated the Ruffle emulator to enable browser-based
+                  execution of <strong>100+ legacy Flash games</strong> without
+                  requiring Adobe Flash Player.
+                </li>
+                <li>
+                  Engineered file storage using MongoDB GridFS for SWF files and
+                  thumbnails, with Next.js API routes for upload, retrieval,
+                  categorization, voting, and issue reporting.
+                </li>
+                <li>
+                  Configured JWT-based authentication and role-based access
+                  control for admins and super users.
+                </li>
+              </ul>
+
+              <div class="tag-row">
+                <span class="tag">Next.js</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">GridFS</span>
+                <span class="tag">JWT</span>
+                <span class="tag">Ruffle</span>
+              </div>
+            </article>
+
+            <article class="project-card spotlight-card reveal">
+              <div class="project-card__top">
+                <div class="project-card__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14 3v5h5M9 13l1.8 1.8L15 11"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="project-card__links">
+                  <a
+                    href="https://github.com/pushapraina123"
+                    class="icon-link"
+                    aria-label="GitHub repository"
+                    title="GitHub"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <svg
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.69 5.42-5.25 5.7.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <h3 class="project-card__title">ResuFit</h3>
+              <p class="project-card__tagline">
+                AI-powered resume analysis platform with ATS-style scoring and
+                personalized feedback.
+              </p>
+
+              <ul class="project-card__points">
+                <li>
+                  Built <strong>10+ RESTful APIs</strong> with Node.js and
+                  Express.js for uploads, revision history, and admin workflows,
+                  integrating Cohere AI to generate ATS scores in
+                  <strong>under 15 seconds</strong>.
+                </li>
+                <li>
+                  Designed a React dashboard for resume analysis, score
+                  visualization, and revision tracking, with Firebase Auth
+                  supporting 100+ test users.
+                </li>
+              </ul>
+
+              <div class="tag-row">
+                <span class="tag">React</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Express</span>
+                <span class="tag">MongoDB</span>
+                <span class="tag">Cohere AI</span>
+                <span class="tag">Firebase</span>
+              </div>
+            </article>
+
+            <article class="project-card spotlight-card reveal">
+              <div class="project-card__top">
+                <div class="project-card__icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="project-card__links">
+                  <a
+                    href="https://github.com/pushapraina123"
+                    class="icon-link"
+                    aria-label="GitHub repository"
+                    title="GitHub"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <svg
+                      width="17"
+                      height="17"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.71 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.84 1.18 3.1 0 4.44-2.69 5.42-5.25 5.7.41.36.78 1.08.78 2.17 0 1.57-.01 2.83-.01 3.22 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.27-5.23-11.5-11.5-11.5Z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <h3 class="project-card__title">ShareKare</h3>
+              <p class="project-card__tagline">
+                Donation and redistribution platform connecting individual
+                donors with NGOs.
+              </p>
+
+              <ul class="project-card__points">
+                <li>
+                  Architected role-based dashboards for donors, NGOs, and
+                  administrators,
+                  <strong>reducing donation moderation time by 25%</strong>
+                  across 3 access levels.
+                </li>
+                <li>
+                  Integrated Leaflet Maps for location-based donation discovery
+                  within a 10km radius, with calendar invites and live
+                  notifications — <strong>+30% engagement</strong> in testing.
+                </li>
+              </ul>
+
+              <div class="tag-row">
+                <span class="tag">Django</span>
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">Leaflet Maps</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="footer__inner">
+        <a href="index.html" class="nav__logo">
+          <span class="nav__logo-bracket">&lt;</span>PR<span
+            class="nav__logo-bracket"
+            >/&gt;</span
+          >
+        </a>
+        <p class="mono dim">designed &amp; built by Pushap Raina</p>
+        <button class="footer__top" id="backToTop" aria-label="Back to top">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M8 13V3M3 7l5-5 5 5"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </footer>
+
+    <!-- ============ INTERACTIVE TERMINAL ============ -->
+    <button
+      class="term-fab"
+      id="termFab"
+      aria-label="Open interactive terminal"
+      title="Open terminal (press /)"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M6 9l3 3-3 3M12 15h6"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span class="term-fab__pulse"></span>
+    </button>
+
+    <div class="term-overlay" id="termOverlay" aria-hidden="true">
+      <div
+        class="term-window"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Interactive terminal"
+      >
+        <div class="term-window__bar">
+          <div class="editor__dots">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="term-window__title">pushap@portfolio: ~</span>
+          <button
+            class="term-window__close"
+            id="termClose"
+            aria-label="Close terminal"
+          >
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M2 2l12 12M14 2 2 14"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="term-window__body" id="termBody">
+          <div class="term-line">
+            <span class="term-line__text"
+              >Welcome to Pushap's terminal. Type
+              <span class="tok-str">help</span> to see what's available.</span
+            >
+          </div>
+        </div>
+        <div class="term-window__input-row">
+          <span class="term-prompt mono"
+            ><span class="tok-fn">pushap</span>@<span class="tok-key"
+              >portfolio</span
+            >:<span class="tok-prop">~$</span></span
+          >
+          <input
+            type="text"
+            id="termInput"
+            class="term-input mono"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false"
+            aria-label="Terminal command input"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
