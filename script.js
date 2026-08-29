@@ -256,7 +256,7 @@
   const typewriterEl = document.getElementById("typewriter");
   const roles = [
     "Full-Stack Developer",
-    "React · Next.js · Node.js",
+    "React  |  Next.js  |  Node.js",
     "Building AI-powered products",
     "500+ DSA problems solved",
   ];
@@ -458,7 +458,7 @@
         })
         .then(() => {
           formStatus.textContent =
-            "Message sent — thanks! I'll get back to you soon.";
+            "Message sent  -  thanks! I'll get back to you soon.";
           form.reset();
           fieldIds.forEach((id) => setError(id, ""));
           if (submitButton) submitButton.disabled = false;
@@ -466,7 +466,7 @@
         .catch((error) => {
           formStatus.style.color = "#e8636b";
           formStatus.textContent =
-            "Something went wrong — please email me directly at rainapushap96@gmail.com";
+            "Something went wrong  -  please email me directly at rainapushap96@gmail.com";
           if (submitButton) submitButton.disabled = false;
           console.log(error);
         });
@@ -559,18 +559,18 @@
         printLine(
           [
             "Available commands:",
-            '  <span class="tok-str">home</span>          — landing page',
-            '  <span class="tok-str">about</span>         — who I am',
-            '  <span class="tok-str">experience</span>    — where I\'ve worked',
-            '  <span class="tok-str">projects</span>      — things I\'ve built',
-            '  <span class="tok-str">skills</span>        — tech I use',
-            '  <span class="tok-str">education</span>     — where I studied',
-            '  <span class="tok-str">beyond</span>        — activities beyond code',
-            '  <span class="tok-str">contact</span>       — get in touch',
-            '  <span class="tok-str">social</span>        — GitHub / LinkedIn / LeetCode / email',
-            '  <span class="tok-str">resume</span>        — download my CV',
-            '  <span class="tok-str">whoami</span>        — one-line intro',
-            '  <span class="tok-str">clear</span>         — clear this terminal',
+            '  <span class="tok-str">home</span>           -  landing page',
+            '  <span class="tok-str">about</span>          -  who I am',
+            '  <span class="tok-str">experience</span>     -  where I\'ve worked',
+            '  <span class="tok-str">projects</span>       -  things I\'ve built',
+            '  <span class="tok-str">skills</span>         -  tech I use',
+            '  <span class="tok-str">education</span>      -  where I studied',
+            '  <span class="tok-str">beyond</span>         -  activities beyond code',
+            '  <span class="tok-str">contact</span>        -  get in touch',
+            '  <span class="tok-str">social</span>         -  GitHub / LinkedIn / LeetCode / email',
+            '  <span class="tok-str">resume</span>         -  download my CV',
+            '  <span class="tok-str">whoami</span>         -  one-line intro',
+            '  <span class="tok-str">clear</span>          -  clear this terminal',
           ].join("\n")
         ),
       home: () => navigate("index.html"),
@@ -593,12 +593,12 @@
         if (resumeLink) resumeLink.click();
         else
           printLine(
-            "Resume link not found — please use the download button on the Home page."
+            "Resume link not found  -  please use the download button on the Home page."
           );
       },
       whoami: () =>
         printLine(
-          "Pushap Raina — final-year CS undergrad at SPIT Mumbai, full-stack developer, 500+ DSA problems deep."
+          "Pushap Raina  -  final-year CS undergrad at SPIT Mumbai, full-stack developer, 500+ DSA problems deep."
         ),
       clear: () => {
         termBody.innerHTML = "";
@@ -616,7 +616,7 @@
         return;
       }
       if (lower.startsWith("sudo")) {
-        printLine("Nice try — this terminal doesn't do root.");
+        printLine("Nice try  -  this terminal doesn't do root.");
         return;
       }
       if (lower === "exit" || lower === "quit") {
@@ -628,7 +628,7 @@
         printLine(
           "command not found: " +
             escapeHtml(command) +
-            ' — type <span class="tok-str">help</span> to see what\'s available.'
+            '  -  type <span class="tok-str">help</span> to see what\'s available.'
         );
     };
     termInput.addEventListener("keydown", (event) => {
@@ -732,7 +732,7 @@
     }
   })();
 
-  /* Hash fragment validation — redirect to 404 when fragment doesn't match any element */
+  /* Hash fragment validation  -  redirect to 404 when fragment doesn't match any element */
   (function () {
     const checkHash = () => {
       try {
@@ -744,7 +744,7 @@
         if (document.getElementById(id)) return;
         // name attribute match (anchors)
         if (document.getElementsByName && document.getElementsByName(id).length) return;
-        // no match found — navigate to 404
+        // no match found  -  navigate to 404
         window.location.replace('/404.html');
       } catch (e) {
         // if anything goes wrong, don't break the page
@@ -757,7 +757,7 @@
   })();
 
   /* ==========================================================================
-     PREMIUM VISUAL EFFECTS — Particles · Custom Cursor · Tilt-3D Cards
+     PREMIUM VISUAL EFFECTS  -  Particles  |  Custom Cursor  |  Tilt-3D Cards
      ========================================================================== */
 
   /* --- Floating Particle Canvas --- */
