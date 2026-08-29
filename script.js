@@ -598,7 +598,7 @@
       },
       whoami: () =>
         printLine(
-          "Pushap Raina  -  final-year CS undergrad at SPIT Mumbai, full-stack developer, 500+ DSA problems deep."
+          "Pushap Raina  -  Computer Science Engineering Graduate from SPIT Mumbai, full-stack developer, 500+ DSA problems deep."
         ),
       clear: () => {
         termBody.innerHTML = "";
