@@ -514,10 +514,26 @@
   if (termFab && termOverlay && termClose && termBody && termInput) {
     const history = [];
     let historyPosition = -1;
+    const ASCII_BANNER = `
+<pre style="font-family:var(--font-pixel);font-size:13px;line-height:1.15;color:#4ade80;margin:0 0 0.5rem 0;">
+  ____  _   _ ____  _   _    _    ____    ____    _    ___ _   _    _    
+ |  _ \\| | | / ___|| | | |  / \\  |  _ \\  |  _ \\  / \\  |_ _| \\ | |  / \\   
+ | |_) | | | \\___ \\| |_| | / _ \\ | |_) | | |_) / _ \\  | ||  \\| | / _ \\  
+ |  __/| |_| |___) |  _  |/ ___ \\|  __/  |  _ &lt;/ ___ \\ | || |\\  |/ ___ \\ 
+ |_|    \\___/|____/|_| |_/_/   \\_\\_|     |_| \\_/_/   \\_\\___|_| \\_/_/   \\_\\
+</pre>
+<div style="color:#38bdf8;font-weight:bold;margin-bottom:4px;">===========================================================================</div>
+<div style="color:#86efac;font-weight:bold;">PUSHAP RAINA | SOFTWARE ENGINEER &amp; FULL-STACK DEVELOPER</div>
+<div style="color:#38bdf8;font-weight:bold;margin-bottom:8px;">===========================================================================</div>
+Type <span class="tok-str">help</span> to see commands, or <span class="tok-str">projects</span> to view featured work.
+`;
     const openTerminal = () => {
       termOverlay.classList.add("is-open");
       termOverlay.setAttribute("aria-hidden", "false");
-      window.setTimeout(() => termInput.focus(), 50);
+      if (!termBody.children.length) {
+        printLine(ASCII_BANNER);
+      }
+      setTimeout(() => termInput.focus(), 60);
       document.body.style.overflow = "hidden";
     };
     const closeTerminal = () => {

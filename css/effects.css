@@ -1,10 +1,10 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    EFFECTS.CSS  â€”  Premium visual polish layer
    Animations Â· 3D cards Â· Glows Â· Noise Â· Particles Â· Micro-interactions
    ========================================================================== */
 
 /* ------------------------------------------------------------------
-   1. ANIMATED NOISE OVERLAY
+   1. ANIMATED NOISE OVERLAY & CRT SCANLINES
    ------------------------------------------------------------------ */
 body::before {
   content: "";
@@ -16,6 +16,19 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-size: 160px 160px;
   animation: noise-shift 8s steps(1) infinite;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  opacity: 0.35;
 }
 @keyframes noise-shift {
   0%   { background-position: 0 0; }

@@ -1,54 +1,55 @@
 /* ==========================================================================
-   TOKENS — Senior Staff UI & Frontend Engineering System
-   Inspired by Linear, Vercel, & Apple Design Systems
+   TOKENS — Hacker CRT Terminal & High-Tech System
+   Inspired by Hacker CLI Portfolios, VT323 CRT Monospace, & Matrix UI
    ========================================================================== */
 :root {
-  /* Surfaces — Deep Obsidian & Dark Slate */
-  --bg: #08090e;
-  --bg-elevated: #0d0e15;
-  --bg-elevated-2: #131520;
-  --bg-glass: rgba(13, 14, 21, 0.72);
+  /* Surfaces — Obsidian Black & CRT Glass */
+  --bg: #05070a;
+  --bg-elevated: #090d14;
+  --bg-elevated-2: #0e131d;
+  --bg-glass: rgba(9, 13, 20, 0.85);
   
-  /* Borders — Dual layer highlights */
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(99, 102, 241, 0.4);
-  --border-soft: rgba(255, 255, 255, 0.04);
-  --inset-highlight: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  /* Borders — Terminal Neon Highlights */
+  --border: rgba(74, 222, 128, 0.18);
+  --border-hover: rgba(74, 222, 128, 0.55);
+  --border-soft: rgba(255, 255, 255, 0.05);
+  --inset-highlight: inset 0 1px 0 0 rgba(74, 222, 128, 0.2);
 
-  /* Typography Colors — High-contrast slate hierarchy */
-  --text: #f8fafc;
-  --text-dim: #94a3b8;
-  --text-faint: #64748b;
+  /* Typography Colors — Hacker Green & Slate Hierarchy */
+  --text: #f0fdf4;
+  --text-dim: #86efac;
+  --text-faint: #4ade80;
 
-  /* Accents — Refined Electric Indigo & Emerald */
-  --accent: #6366f1;
-  --accent-bright: #818cf8;
-  --accent-soft: rgba(99, 102, 241, 0.14);
-  --accent-glow: rgba(99, 102, 241, 0.25);
+  /* Accents — Matrix Neon Green & Cyber Cyan */
+  --accent: #4ade80;
+  --accent-bright: #22c55e;
+  --accent-soft: rgba(74, 222, 128, 0.14);
+  --accent-glow: rgba(74, 222, 128, 0.35);
 
-  --accent-2: #10b981;
-  --accent-2-soft: rgba(16, 185, 129, 0.12);
+  --accent-2: #38bdf8;
+  --accent-2-soft: rgba(56, 189, 248, 0.14);
 
   --accent-3: #f59e0b;
 
-  /* Gradients — Professional multi-stop sweeps */
-  --grad-accent: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #10b981 100%);
-  --grad-accent-v: linear-gradient(180deg, #6366f1 0%, #10b981 100%);
-  --grad-text: linear-gradient(120deg, #ffffff 0%, #cbd5e1 40%, #818cf8 75%, #34d399 100%);
-  --grad-card: linear-gradient(145deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  /* Gradients — Terminal Neon Sweeps */
+  --grad-accent: linear-gradient(135deg, #4ade80 0%, #38bdf8 50%, #818cf8 100%);
+  --grad-accent-v: linear-gradient(180deg, #4ade80 0%, #38bdf8 100%);
+  --grad-text: linear-gradient(120deg, #ffffff 0%, #4ade80 40%, #38bdf8 75%, #818cf8 100%);
+  --grad-card: linear-gradient(145deg, rgba(74, 222, 128, 0.05) 0%, rgba(56, 189, 248, 0.02) 100%);
 
   /* Typography */
-  --font-display: "Space Grotesk", "Syne", sans-serif;
-  --font-body: "Plus Jakarta Sans", "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-pixel: "VT323", monospace;
+  --font-display: "Space Grotesk", "VT323", sans-serif;
+  --font-body: "Inconsolata", "Plus Jakarta Sans", monospace;
+  --font-mono: "Inconsolata", "JetBrains Mono", monospace;
 
   /* Layout & Geometry */
   --max-w: 1220px;
   --pad: clamp(1.5rem, 5vw, 3.5rem);
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 
   /* Physics & Motion Curves */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);

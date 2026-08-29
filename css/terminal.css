@@ -66,17 +66,17 @@
 
 .term-window {
   width: 100%;
-  max-width: 640px;
+  max-width: 720px;
   background: var(--bg-elevated);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(74, 222, 128, 0.35);
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 40px rgba(74, 222, 128, 0.2), 0 40px 100px -20px rgba(0, 0, 0, 0.85);
   transform: translateY(18px) scale(0.98);
   transition: transform 0.3s var(--ease-out);
   display: flex;
   flex-direction: column;
-  max-height: 78vh;
+  max-height: 82vh;
 }
 .term-overlay.is-open .term-window {
   transform: translateY(0) scale(1);
