@@ -162,6 +162,56 @@
   transition: border-color var(--dur-fast) var(--ease),
     transform var(--dur-fast) var(--ease);
 }
+.timeline__company-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--accent-2);
+  background: var(--accent-2-soft);
+  border: 1px solid rgba(6, 214, 160, 0.25);
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  margin-bottom: 0.8rem;
+}
+.timeline__company-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 8px var(--accent-2);
+}
+
+.timeline__metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.6rem;
+  margin: 1.1rem 0 1.2rem 0;
+}
+.metric-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--dur-fast) var(--ease);
+}
+.metric-chip:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 15px -3px rgba(124, 58, 237, 0.35);
+  transform: translateY(-2px);
+}
+.metric-chip__icon {
+  color: var(--accent-2);
+  flex-shrink: 0;
+}
 .timeline__card:hover {
   border-color: var(--accent-2);
   transform: translateY(-3px);
@@ -626,9 +676,59 @@
 .section--contact .section__title {
   max-width: 100%;
 }
-.section--contact .section__sub {
-  max-width: 58ch;
+.contact__status-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
   margin-bottom: 2.2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.5);
+  transition: all var(--dur-fast) var(--ease);
+}
+.contact__status-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 20px 45px -15px rgba(124, 58, 237, 0.3);
+  transform: translateY(-2px);
+}
+.contact__status-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--grad-accent-v);
+}
+.contact__status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent-2);
+  box-shadow: 0 0 0 0 rgba(6, 214, 160, 0.6);
+  animation: status-pulse 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes status-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(6, 214, 160, 0.6); }
+  70% { box-shadow: 0 0 0 10px rgba(6, 214, 160, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(6, 214, 160, 0); }
+}
+.contact__status-info strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+.contact__status-info span {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
 }
 
 .contact__grid {
