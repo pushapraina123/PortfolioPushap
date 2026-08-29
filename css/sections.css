@@ -7,6 +7,45 @@
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
 }
+.about__photo-container {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.25), rgba(6, 214, 160, 0.15));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.7), 0 0 30px rgba(124, 58, 237, 0.2);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.about__photo-container:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 45px rgba(124, 58, 237, 0.35);
+}
+.about__photo-img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--radius-md);
+  display: block;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.about__photo-badge {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 100px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--bg);
+}
 .about__text p {
   color: var(--text-dim);
   margin-bottom: 1rem;
@@ -419,6 +458,37 @@
   padding: 1.7rem;
   transition: border-color var(--dur-fast) var(--ease),
     transform var(--dur-fast) var(--ease);
+  overflow: hidden;
+  position: relative;
+}
+.edu-card__thumb {
+  position: relative;
+  width: calc(100% + 3.4rem);
+  margin: -1.7rem -1.7rem 1.2rem -1.7rem;
+  height: 160px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg-elevated-2);
+}
+.edu-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s var(--ease-out);
+}
+.edu-card:hover .edu-card__thumb img {
+  transform: scale(1.06);
+}
+.edu-card__thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 35%,
+    rgba(9, 13, 32, 0.92) 100%
+  );
+  pointer-events: none;
 }
 .edu-card:hover {
   border-color: var(--accent);
